@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="utf-8"/>
+    <meta name="robots" content="all"/>
+    <meta name="author" content="Tencent-ISRD"/>
+    <meta name="Copyright" content="Tencent"/>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0,user-scalable=0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css"/>
+
+    <script type="text/javascript" src="css/main.js"></script>
+    <script src="js/swiper-4.3.5.min.js"></script>
+
+    <link rel="stylesheet" href="css/swiper-4.3.5.min.css"/>
+    <style>
+        #lunbo {
+            border: 1px solid red;
+            width: 100%;
+            height: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #touxiang {
+            margin-top: -300px; /*离上边距离*/
+            margin-left: 120px; /*离左边距离*/
+        }
+
+        #nickname {
+            margin-top: 0px; /*离上边距离*/
+            margin-left: 160px; /*离左边距离*/
+            /*background-color: #54ff8e;*/
+        }
+
+        #touxiang img {
+            border-radius: 50%
+        }
+
+        #xinxi {
+            background-color: #bce8f1;
+        }
+
+        body {
+            background-color: #ff0d24;
+        }
+
+        /*h2*/
+        /*{*/
+        /*background-color: #fdfbff;*/
+        /*}*/
+        /*p*/
+        /*{*/
+        /*background-color: rgb(254, 249, 255);*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="lunbo">
+    <!--<img id="lunbotu" src="imgs/1.jpg" width="100%" height="100%"/>-->
+</div>
+
+<!--<div class="container" id="container">-->
+<!--<div class="page__ft j_bottom">-->
+<!--<a href="http://not.natapp1.cc/lists/"><img src="./img/kdcx.png"/></a>-->
+<!--</div>-->
+<!--</div>-->
+
+<div id="touxiang">
+    <img class="img-responsive" alt="App Logo" th:src="${weiXinUser.headImgUrl}"/>
+</div>
+
+<div id="xinxi">
+
+    <div id="nickname">
+        <h1 th:text="${weiXinUser.nickname}"></h1>
+    </div>
+
+    <!--<h1 th:text="${weiXinUser.openId}"></h1>-->
+    <h2>
+        <tr>&nbsp;&nbsp;&nbsp;&nbsp;<th>状态</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td
+                th:text="${weiXinUser.subscribe}"></td>
+        </tr>
+    </h2>
+
+    <!--<h1 th:text="${weiXinUser.subscribeTime}"></h1>&lt;!&ndash;关注时间&ndash;&gt;-->
+    <!--<input id="s3" th:value="${weiXinUser.sex}"></input>-->
+    <h2>
+        <tr>&nbsp;&nbsp;&nbsp;&nbsp;<th>性别</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                id="s33"></span></tr>
+    </h2>
+    <input id="s3" type="hidden" th:value="${weiXinUser.sex}"/>
+    <h2>
+        <tr>&nbsp;&nbsp;&nbsp;&nbsp;<th>省份</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td
+                th:text="${weiXinUser.province}"></td>
+        </tr>
+    </h2>
+
+    <script>
+        var s3 = document.getElementById('s3').value;
+        // var s3=document.getElementById('s3').value;
+        // alert(s3)
+        if (s3 == 1) {
+            document.getElementById('s33').innerHTML = "男";
+        } else if (s3 == 2) {
+            document.getElementById('s33').innerHTML = "女";
+        } else {
+            document.getElementById('s33').innerHTML = "未知";
+        }
+    </script>
+
+    <!--<tr><th>ID</th><td th:text="${weiXinUser.country}">neo</td></tr>-->
+
+    <h2>
+        <tr>&nbsp;&nbsp;&nbsp;&nbsp;<th>国家</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td
+                th:text="${weiXinUser.country}"></td>
+        </tr>
+    </h2>
+    <h2>
+        <tr>&nbsp;&nbsp;&nbsp;&nbsp;<th>省份</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td
+                th:text="${weiXinUser.province}"></td>
+        </tr>
+    </h2>
+    <h2>
+        <tr>&nbsp;&nbsp;&nbsp;&nbsp;<th>城市</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td
+                th:text="${weiXinUser.city}"></td>
+        </tr>
+    </h2>
+    <h2>
+        <tr>&nbsp;&nbsp;&nbsp;&nbsp;<th>言语</th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td
+                th:text="${weiXinUser.language}"></td>
+        </tr>
+    </h2>
+    <!--<h2 th:text="${weiXinUser.province}"></h2>-->
+    <!--<h2 th:text="${weiXinUser.city}"></h2>-->
+    <!--<h2 th:text="${weiXinUser.language}"></h2>-->
+</div>
+</body>
+</html>
+

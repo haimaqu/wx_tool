@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0,user-scalable=0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+
+
+<body class="container">
+<br/>
+<h1>用户列表</h1>
+<br/><br/>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>&nbsp;ID&nbsp;</th>
+            <th>发&nbsp;货&nbsp;人</th>
+            <th>收&nbsp;&nbsp;货&nbsp;&nbsp;人</th>
+            <th>发货人号码</th>
+            <th>收货人号码</th>
+            <th>发货&nbsp;&nbsp;地址</th>
+            <th>收货&nbsp;&nbsp;地址</th>
+            <th>运送&nbsp;&nbsp;费用</th>
+            <th>货物&nbsp;&nbsp;图片</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <th scope="row" th:text="${user.id}">1</th>
+            <td th:text="${user.fuserName}">neo</td>
+            <td th:text="${user.tuserName}">neos</td>
+            <td th:text="${user.fphone}">ph</td>
+            <td th:text="${user.tphone}">phs</td>
+            <td th:text="${user.fcity}">cs</td>
+            <td th:text="${user.tcity}">css</td>
+            <td th:text="${user.price}">16</td>
+            <td th:text="${user.picture}">sss</td>
+            <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>
+            <td><a th:href="@{/delete(id=${user.id})}">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>
+    </div>
+</div>
+
+
+<br/><br/>
+<div class="container" style="min-height: 500px">
+    <div class="starter-template">
+        <form class="form-horizontal" id="search-form">
+            <div class="form-group form-group-lg">
+                <label class="col-sm-2 control-label">用户ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="username"/>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" id="bth-search"
+                            class="btn btn-primary btn-lg" onclick="fire_ajax_submit()">Search
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+        <h4>订&nbsp;单&nbsp;号：</h4>
+        <h4>
+            <div id="feedback1"></div>
+        </h4>
+        <h4>发&nbsp;货 &nbsp;人:
+            <div id="feedback2"></div>
+        </h4>
+        <h4>收&nbsp;货 &nbsp;人:
+            <div id="feedback3"></div>
+        </h4>
+        <h4>发货人号码:
+            <div id="feedback4"></div>
+        </h4>
+        <h4>收货人号码:
+            <div id="feedback5"></div>
+        </h4>
+        <h4>发货&nbsp;&nbsp;地址:
+            <div id="feedback6"></div>
+        </h4>
+        <h4>收货&nbsp;&nbsp;地址:
+            <div id="feedback7"></div>
+        </h4>
+        <h4>运送&nbsp;&nbsp;费用:
+            <div id="feedback8"></div>
+        </h4>
+        <h4>货物&nbsp;&nbsp;图片:
+            <div id="feedback9"></div>
+        </h4>
+        <h4>单号:
+            <div id="feedback10"></div>
+        </h4>
+    </div>
+</div>
+
+<script>
+    function fire_ajax_submit() {
+        var search = $("#username").val();
+        $.ajax({
+            type: "POST",
+            url: "/api/searchs",
+            data: {danHao: search},
+            dataType: 'json',
+            cache: false,
+            async: false,
+            success: function (data) {
+                var string1 = data[0]["id"];
+                var string2 = data[0]["fuserName"];
+                var string10 = data[0]["danHao"];
+                var string3 = data[0]["tuserName"];
+                var string4 = data[0]["fphone"];
+                var string5 = data[0]["tphone"];
+                var string6 = data[0]["fcity"];
+                var string7 = data[0]["tcity"];
+                var string8 = data[0]["price"];
+                var string9 = data[0]["picture"];
+                //$('#feedback').html(string);
+                $('#feedback1').html(string1);
+                $('#feedback2').html(string2);
+                $('#feedback3').html(string3);
+                $('#feedback4').html(string4);
+                $('#feedback5').html(string5);
+                $('#feedback6').html(string6);
+                $('#feedback7').html(string7);
+                $('#feedback8').html(string8);
+                $('#feedback9').html(string9);
+                $('#feedback10').html(string10);
+                //$('#feedback').html(string);
+                console.log("SUCCESS : ", data);
+                $("#btn-search").prop("disabled", false);
+            },
+            error: function (e) {
+                alert("单号错误!");
+                var json = "<h4>Ajax Response</h4><pre>"
+                    + e.responseText + "</pre>";
+                $('#feedback').html(json);
+
+                console.log("ERROR : ", e);
+                $("#btn-search").prop("disabled", false);
+
+            }
+        });
+
+    }
+</script>
+<!--<script type="text/javascript"-->
+<!--src="webjars/jquery/3.1.1/jquery.min.js"></script>-->
+<!--<script type="text/javascript" src="css/main.js"></script>-->
+</body>
+</html>

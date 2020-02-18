@@ -1,0 +1,83 @@
+@charset "UTF-8";
+p{
+   font-family: "Bell MT";
+}
+#xzdz{
+    width: 100%;
+    margin-top: 500px;
+}
+#bejing {
+    background-color: rgba(255, 252, 201, 0.16);
+}
+#liuhai {
+    width: 100%;
+    /*margin-left: 15px;*/
+    /*background-repeat:no-repeat;*/
+    /*background-size: 2000px 1000px;*/
+    background-color: #e2d4ba;
+    opacity: 0.5;
+}
+.icon {
+    width: 5em;
+    height: 5em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    /*margin-top: 95px;*/
+    margin-left: 150px;
+
+}
+
+#xm {
+    width: 80%;
+}
+#zhuxinxi{
+    width: 100%;
+}
+#mianban1{
+    width: 300px;
+}
+#dizhi{
+    width:400px;
+}
+#fphone{
+    /*float: left;*/
+    padding-right: 6px;
+    /*margin-right: 100px;*/
+}
+#fuserName{
+    /*float: left;*/
+    width: 55%;
+    /*margin-right: 0px;*/
+}
+#caozuo{
+    margin-right: 10px;
+}
+.zongde{
+    width: 100%;
+    background-color: #67adad;
+}
+.cide{
+    background-color: #1AAD19;
+    width: 10px;
+}
+/*#biaoge{*/
+/*background-color: #ad7d66;*/
+/*}*/
+.bianji {
+    background-color: #ad7d66;
+}
+.bianjis {
+    background-color: #ad453a;
+}
+#biaos {
+    background-color: rgba(238, 150, 56, 0.36);
+}
+#tbiaos {
+    background-color: rgba(228, 155, 239, 0.48);
+}
+#cibiao {
+    background-color: rgba(64, 239, 108, 0.48);
+    /*height: 100%;*/
+    width: 100%;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,
+       minimum-scale=1,user-scalable=no"></meta>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>修改用户</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal" th:action="@{/edit}" th:object="${user}" method="post">
+        <input type="hidden" name="id" th:value="*{id}"/>
+        <!--<input type="text" name="id" th:value="*{id}" />-->
+        <div class="form-group">
+            <label for="danHao" class="col-sm-2 control-label">单号</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="danHao" id="danHao" th:value="*{danHao}"
+                       placeholder="danHao"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="fuserName" class="col-sm-2 control-label">fuserName</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="fuserName" id="fuserName" th:value="*{fuserName}"
+                       placeholder="fuserName"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="tuserName" class="col-sm-2 control-label">tuserName</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="tuserName" id="tuserName" th:value="*{tuserName}"
+                       placeholder="tuserName"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fphone" class="col-sm-2 control-label">fphone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="fphone" id="fphone" th:value="*{fphone}"
+                       placeholder="fphone"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tphone" class="col-sm-2 control-label">tphone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="tphone" id="tphone" th:value="*{tphone}"
+                       placeholder="tphone"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fcity" class="col-sm-2 control-label">fcity</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="fcity" id="fcity" th:value="*{fcity}"
+                       placeholder="fcity"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tcity" class="col-sm-2 control-label">tcity</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" name="tcity" id="tcity" th:value="*{tcity}"
+                       placeholder="tcity"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price" class="col-sm-2 control-label">price</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="price" id="price" th:value="*{price}"
+                       placeholder="price"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="picture" class="col-sm-2 control-label">picture</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="picture" id="picture" th:value="*{picture}"
+                       placeholder="picture"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="修 改" class="btn btn-info"/>
+                &nbsp; &nbsp; &nbsp;
+                <a href="/toAdd" th:href="@{/list}" class="btn btn-info">回到查询页面</a>
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

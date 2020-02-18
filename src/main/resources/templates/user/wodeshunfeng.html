@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0,user-scalable=0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css"/>
+
+    <script type="text/javascript" src="css/main.js"></script>
+    <script src="js/swiper-4.3.5.min.js"></script>
+
+    <link rel="stylesheet" href="css/swiper-4.3.5.min.css"/>
+
+    <!--<link href="css/weui.min.css" rel="stylesheet">-->
+    <!--<link href="css/jquery-weui.min.css" rel="stylesheet">-->
+    <!--<style>-->
+    <!--img{-->
+    <!--width: 100%;-->
+    <!--}-->
+    <!--</style>-->
+    <style>
+        #lunbo {
+            border: 1px solid red;
+            width: 100%;
+            height: 300px;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body onload="init()">
+
+<div id="lunbo">
+    <img id="lunbotu" src="imgs/1.jpg" width="100%" height="100%"/>
+
+</div>
+
+
+<script>
+    function init() {
+        setInterval("changeImg()", 2000);
+    }
+
+    var i = 1;
+
+    function changeImg() {
+        i++;
+        document.getElementById("lunbotu").src = "imgs/" + i + ".jpg";
+        if (i == 8) {
+            i = 0;
+        }
+    }
+</script>
+
+<div class="container" id="container">
+    <div class="page__ft j_bottom">
+        <!--<a href="javascript:home()"><img src="./img/kdcx.png"/></a>-->
+        <a href="http://not.natapp1.cc/lists/"><img src="./img/kdcx.png"/></a>
+    </div>
+</div>
+
+
+<!--<h1 th:text="${weiXinUser.nickname}"></h1>-->
+
+<!--<div class="swiper-container">-->
+<!--<div class="swiper-wrapper">-->
+<!--<div class="swiper-slide"><img src="./img/tianekuaiyun.jpg" alt=""/></div>-->
+<!--<div class="swiper-slide"><img src="./img/kdcx.png" alt=""/></div>-->
+<!--</div>-->
+<!--<div class="swiper-pagination"></div>-->
+<!--</div>-->
+<!--&lt;!&ndash;<script src="js/jquery-3.2.1.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script src="js/jquery-weui.min.js"></script>&ndash;&gt;-->
+<!--<script src="js/swiper-4.3.5.min.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--var mySwiper = new Swiper('.swiper-container',-->
+<!--{-->
+<!--speed:1000,//播放速度-->
+<!--autoHeight:true,-->
+<!--loop:true,//是否循环播放-->
+<!--setWrapperSize:true,-->
+<!--autoplay:-->
+<!--{-->
+<!--delay: 5000,-->
+<!--disableOnInteraction: false,-->
+<!--},-->
+<!--pagination:  '.swiper-pagination',//分页-->
+<!--effect : 'slide',//动画效果-->
+<!--}-->
+<!--);-->
+<!--</script>-->
+<!--<div class="weui-gallery" style="display: block">-->
+<!--<span class="weui-gallery__img" style="background-image: url(./img/tianekuaiyun.jpg);"></span>-->
+<!--<div class="weui-gallery__opr">-->
+<!--<a href="javascript:" class="weui-gallery__del">-->
+<!--<i class="weui-icon-delete weui-icon_gallery-delete"></i>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+
+
+</body>
+</html>
+

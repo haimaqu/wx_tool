@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,
+       minimum-scale=1,user-scalable=no"></meta>
+    <title>user</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <!--<script type="text/javascript" src="css/main.js"></script>-->
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.1.4/weui.min.js"></script>
+    <link href="/css/weui.css" rel="stylesheet"/>
+    <link href="/css/example.css" rel="stylesheet"/>
+    <!--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+</head>
+<body class="container">
+<br/>
+<h1>新订单</h1>
+<div class="with:80% table table-striped has-info">
+    <form th:action="@{/add}" method="post">
+        <div class="form-group has-success">
+            <!--<label for="danHao" class="col-sm-2 control-label">单号(1+您的手机号)</label>-->
+            <div class="col-sm-6">
+                <tr>
+                    <th class="col-md-1">单号</th>
+                    <td><input type="text" class="form-control" name="danHao" id="danHao" placeholder="单号"/></td>
+                </tr>
+            </div>
+        </div>
+
+        <div class="form-group has-success">
+            <!--<label for="fuserName" class="col-sm-2 control-label">发货人姓名</label>-->
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="fuserName" id="fuserName" placeholder="发货人姓名"/>
+            </div>
+        </div>
+
+        <div class="form-group has-success">
+            <!--<label for="tuserName" class="col-sm-2 control-label">收货人姓名</label>-->
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="tuserName" id="tuserName" placeholder="收货人姓名"/>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <!--<label for="fphone" class="col-sm-2 control-label">发货人号码</label>-->
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="fphone" id="fphone" placeholder="发货人号码"/>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <!--<label for="tphone" class="col-sm-2 control-label">收货人号码</label>-->
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="tphone" id="tphone" placeholder="收货人号码"/>
+            </div>
+        </div>
+
+        <div class="form-group has-success">
+            <!--<label for="fcity" class="col-sm-2 control-label">发&nbsp;&nbsp;&nbsp;&nbsp;货&nbsp;&nbsp;&nbsp;地</label>-->
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="fcity" id="fcity" placeholder="发货地"/>
+            </div>
+        </div>
+
+
+        <!--<div class="page picker js_show">-->
+        <div class="form-group has-success">
+            <!--<div class="form-group has-success">-->
+            <div class="col-sm-10">
+                <!--<div class="page__bd page__bd_spacing">-->
+                <div class="col-sm-10">
+                    <span type="text" class="weui-btn weui-btn_default" id="showPicker" value="114 句容">114 句容</span>
+                    <input type="text" name="tcity" id="test" style="visibility: hidden" value=""/>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" class="picker js_show">
+            $('#showPicker').on('click', function () {
+                weui.picker([{
+                    label: '114 句容',
+                    value: '114 句容'
+                }, {
+                    label: '191   常州',
+                    value: "191   常州"
+                }, {
+                    label: '103   宜兴',
+                    value: '103   宜兴'
+                }, {
+                    label: '144   高邮',
+                    value: '144   高邮'
+                }, {
+                    label: '231   泰州',
+                    value: '231   泰州'
+
+                }, {
+                    label: '141   扬州',
+                    value: '141   扬州'
+
+                }, {
+                    label: '155   东台',
+                    value: '155   东台'
+
+                }, {
+                    label: '711   杭州',
+                    value: '711   杭州'
+
+                }, {
+                    label: '166   沛县',
+                    value: '166   沛县'
+
+                }, {
+                    label: '111   镇江',
+                    value: '111   镇江'
+
+                }], {
+                    onChange: function (result) {
+                        console.log(result);
+                        document.getElementById("showPicker").innerHTML = result;
+                        /*实时显示*/
+                        document.getElementById("test").value = result[0].value;
+                        /*改变值*/
+                    },
+                    onConfirm: function (result) {
+                        console.log(result[0].value);
+                        document.getElementById("test").innerText = result[0].value;
+                        /*没什么用*/
+                    }
+                });
+            });
+            $('#showDatePicker').on('click', function () {
+                weui.datePicker({
+                    start: 1990,
+                    end: new Date().getFullYear(),
+                    onChange: function (result) {
+                        console.log(result);
+                    },
+                    onConfirm: function (result) {
+                        console.log(result);
+                    }
+                });
+            });
+        </script>
+
+
+        <div class="form-group has-success">
+            <!--<label for="price" class="col-sm-2 control-label">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格</label>-->
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="price" id="price" placeholder="价格"/>
+            </div>
+        </div>
+        <div class="form-group has-success">
+            <!--<label for="picture" class="col-sm-2 control-label">货物&nbsp;&nbsp;&nbsp;图片</label>-->
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="picture" id="picture" placeholder="图片"/>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-md-offset-5">
+            <!--<div class="form-group has-success">-->
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="提交" class="btn btn-info"/>
+                &nbsp; &nbsp; &nbsp;
+                <input type="reset" value="重置" class="btn btn-info"/>
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

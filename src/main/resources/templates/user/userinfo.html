@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="utf-8"/>
+    <meta name="robots" content="all"/>
+    <meta name="author" content="Tencent-ISRD"/>
+    <meta name="Copyright" content="Tencent"/>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0,user-scalable=0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css"/>
+
+    <script type="text/javascript" src="css/main.js"></script>
+    <script src="js/swiper-4.3.5.min.js"></script>
+
+    <link rel="stylesheet" href="css/swiper-4.3.5.min.css"/>
+    <style>
+        #lunbo {
+            border: 1px solid red;
+            width: 100%;
+            height: 300px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #kdcx {
+            margin-top: 50px; /*离上边距离*/
+            margin-left: 0px; /*离左边距离*/
+        }
+
+        #touxiang {
+            margin-top: -250px; /*离上边距离*/
+            margin-left: 120px; /*离左边距离*/
+
+            /*border-radius: 11px;*/
+            /*outline-style:groove;*/
+            /*width: 302px; !*你自己定义的宽*!*/
+            /*height:320px; !*你自己定义的高*!*/
+        }
+
+        #touxiang img {
+            border-radius: 50%
+        }
+    </style>
+
+</head>
+<body onload="init()">
+
+<div id="lunbo">
+    <img id="lunbotu" src="imgs/1.jpg" width="100%" height="100%"/>
+</div>
+
+
+<script>
+    function init() {
+        setInterval("changeImg()", 2000);
+    }
+
+    var i = 1;
+
+    function changeImg() {
+        i++;
+        document.getElementById("lunbotu").src = "imgs/" + i + ".jpg";
+        if (i == 8) {
+            i = 0;
+        }
+    }
+</script>
+
+<div class="container" id="container">
+    <div class="page__ft j_bottom" id="kdcx">
+        <!--<a href="javascript:home()"><img src="./img/kdcx.png"/></a>-->
+        <a href="http://not.natapp1.cc/lists/"><img src="./img/kdcx.png"/></a>
+    </div>
+</div>
+
+<!--<h1 th:text="${weiXinUser.nickname}"></h1>-->
+<div id="touxiang" class="page__ft j_bottom">
+    <a href="http://not.natapp1.cc/tologinuserinfos/"><img th:src="${weiXinUser.headImgUrl}"/></a>
+</div><!-- class="img-responsive" alt="App Logo" -->
+
+
+<!--<h1 th:text="${weiXinUser.openId}"></h1>-->
+<!--<h1 th:text="${weiXinUser.subscribe}"></h1>&lt;!&ndash;关注状态&ndash;&gt;-->
+<!--<h1 th:text="${weiXinUser.subscribeTime}"></h1>&lt;!&ndash;关注时间&ndash;&gt;-->
+<!--<input id="s3" th:value="${weiXinUser.sex}"></input>-->
+<h1><p id="s33"></p></h1>
+<!--<input id="s3" type="hidden" th:value="${weiXinUser.sex}" />-->
+
+<script>
+    var s3 = document.getElementById('s3').value;
+    // var s3=document.getElementById('s3').value;
+    // alert(s3)
+    if (s3 == 1) {
+        document.getElementById('s33').innerHTML = "男";
+    } else if (s3 == 2) {
+        document.getElementById('s33').innerHTML = "女";
+    } else {
+        document.getElementById('s33').innerHTML = "未知";
+    }
+</script>
+
+
+<!--<h1 th:text="${weiXinUser.country}"></h1>-->
+<!--<h1 th:text="${weiXinUser.province}"></h1>-->
+<!--<h1 th:text="${weiXinUser.city}"></h1>-->
+<!--<h1 th:text="${weiXinUser.language}"></h1>-->
+
+</body>
+</html>
+

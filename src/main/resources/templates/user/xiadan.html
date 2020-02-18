@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0,user-scalable=0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>userList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.1.4/weui.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css"-->
+    <!--href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>-->
+    <!--<script type="text/javascript" src="css/main.js"></script>-->
+    <!--<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>-->
+    <link rel="stylesheet" href="../css/example.css"/>
+    <link rel="stylesheet" href="../css/weui.css"/>
+    <!--<link href="css/mui.min.css" rel="stylesheet"/>-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../js/iconfont.js"></script>
+    <!--thymeleaf正确的引用方法-->
+    <!--<script th:src="@{../js/iconfont.js}"></script>-->
+    <style type="text/css">
+        .icon {
+            width: 2em;
+            height: 2em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+            margin-top: 115px;
+            margin-left: 15px;
+        }
+        .icons {
+            width: 2em;
+            height: 2em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+            margin-top: 170px;
+            margin-left: 15px;
+        }
+        #ji {
+            width: 300px;
+            height: 130px;
+            margin-left: -120px;
+            margin-top: 50px;
+
+            /*margin-top: ;*/
+        }
+        #shou {
+            width: 300px;
+            height: 190px;
+            margin-left: -120px;
+            margin-top: 10px;
+            /*margin-top: ;*/
+        }
+        /*#ss{*/
+        /*background-img:url('../../static/img/ji.jpg')*/
+        /*}*/
+        #kdysms {
+            width: 100%;
+            height: 80px;
+            /*margin-left: 15px;*/
+            /*background-repeat:no-repeat;*/
+            /*background-size: 2000px 1000px;*/
+            background-color: rgba(221, 225, 241, 0.83);
+
+            font-color: #0c0509;
+            opacity: 0.7;
+        }
+        #dizhibu {
+            width: 300px;
+            height: 130px;
+            margin-left: 250px;
+            margin-top: 115px;
+            color: #f00;
+            display: block;
+            text-decoration: none;
+            /*font-color: #0c0509;*/
+            /*opacity: 0.3;*/
+        }
+        #dizhibu2 {
+            width: 300px;
+            height: 130px;
+            margin-left: 250px;
+            margin-top: 180px;
+            color: #f00;
+            display: block;
+            /*font-color: #0c0509;*/
+            /*opacity: 0.3;*/
+        }
+        a {
+            color: #f00;
+        }
+        #xinxi {
+            width: 90%;
+            margin-left: 15px;
+            border-radius: 5%
+        }
+        #xinxis {
+            width: 90%;
+            margin-left: 15px;
+            border-radius: 5%
+        }
+        #xiadan {
+            margin-top: 110px;
+            margin-left: 110px;
+            background-color: rgba(45, 12, 28, 0.95);
+        }
+        #yxk {
+            /*border: 1px solid red;*/
+        }
+        #div2 {
+            margin-left: 110px;
+        }
+        /*#touxiang img {*/
+        /*border-radius: 50%*/
+        /*}*/
+        #xiadan{
+            margin-top: 400px;
+            margin-left: 150px;
+        }
+        #chaxun{
+            margin-top: -900px;
+            margin-left: 180px;
+        }
+        #xiadan {
+            border-radius: 50%;
+            margin-top: -900px;
+            margin-left: 160px;
+            width: 90px;
+        }
+    </style>
+</head>
+
+
+<script>
+    //window.onload = function(){}
+    //window.localStorage.removeItem("oilgun");
+    //var flags = null;
+    var dateElement = null;
+    function saves() {//2s
+        var flags = 1;
+        var obj = new Object();
+        obj.record = new Array();
+        var shuru =  document.getElementById("shuru");
+        obj.record.push(flags);
+        obj.record.push(shuru.value);
+        localStorage.setItem(dateElement, JSON.stringify(obj));
+
+    }
+    function save() {//j
+        var flags = 2;
+        var obj = new Object();
+        obj.record = new Array();
+        var shurus =  document.getElementById("shurus");
+        obj.record.push(flags);
+        obj.record.push(shurus.value);
+        localStorage.setItem(dateElement, JSON.stringify(obj));
+    }
+    function win_onload(){
+        var ob = JSON.parse(localStorage.getItem(dateElement));
+        setShow(ob);
+        alert(ob.record[1]+555555);
+    }
+    function setShow(ob){
+        if(ob.record[0]==1 || ob.record[0]==4){
+            var zhi = ob.record[1];
+            document.getElementById("shuru").value = zhi;
+            alert(zhi+999);
+            // window.localStorage.removeItem(dateElement);
+            localStorage.removeItem(dateElement);
+            var obs = JSON.parse(localStorage.getItem(dateElement));
+            var obss = obs.record[1];
+        }else if(ob.record[0]==2 || ob.record[0]==3){
+            var zhis = ob.record[1];
+            document.getElementById("shurus").value = zhis;
+            alert(zhis+999777);
+            localStorage.removeItem(dateElement);
+            var obs1 = JSON.parse(localStorage.getItem(dateElement));
+            var obss1 = obs1.record[1];
+        }
+    }
+    function tiaozhuan() {
+        window.location=('http://not.natapp1.cc/jijianren/')
+    }
+    function tiaozhuanal() {
+        var flags = 3;
+        var obj = new Object();
+        obj.record = new Array();
+        var shurus =  document.getElementById("shurus");
+        obj.record.push(flags);
+        obj.record.push(shurus.value);
+        localStorage.setItem(dateElement, JSON.stringify(obj));
+    }
+    function tiaozhuans() {
+        window.location=('http://not.natapp1.cc/shoujianren/')
+    }
+    function tiaozhuanals() {
+        var flags = 4;
+        var obj = new Object();
+        obj.record = new Array();
+        var shurus =  document.getElementById("shuru");
+        obj.record.push(flags);
+        obj.record.push(shurus.value);
+        localStorage.setItem(dateElement, JSON.stringify(obj));
+    }
+
+</script>
+
+
+<body onload="win_onload()">
+<svg class="icon" aria-hidden="true" style="position:absolute;z-index: 1600;">
+    <use xlink:href="#icon-jijianren"></use>
+</svg>
+<svg class="icons" aria-hidden="true" style="position:absolute;z-index: 1602;">
+    <use xlink:href="#icon-xuanzeshoujianrenshoujianzuzhi"></use>
+</svg>
+<div>
+    <!--<a id="test" href="javascript:;" class="weui-btn weui-btn_plain-primary">扫码查询</a>-->
+    <input id="s1" type="hidden" th:value="${signature}"/>
+    <input id="s2" type="hidden" th:value="${timestamp}"/>
+    <input id="s3" type="hidden" th:value="${nonceStr}"/>
+</div>
+<script>
+    var s1 = document.getElementById('s1').value;/*签名*/
+    var s2 = document.getElementById('s2').value;/*时间戳*/
+    var s3 = document.getElementById('s3').value;
+    /*
+     * 注意：
+     * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+     * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+     * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+     *
+     * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+     * 邮箱地址：weixin-open@qq.com
+     * 邮件主题：【微信JS-SDK反馈】具体问题
+     * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+     */
+    wx.config({
+        debug: false,
+        appId: 'wx53f704e68305cde5',
+        timestamp: parseInt(s2),
+        nonceStr: s3,
+        signature: s1,
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'onMenuShareQZone',
+            'hideMenuItems',
+            'showMenuItems',
+            'hideAllNonBaseMenuItem',
+            'showAllNonBaseMenuItem',
+            'translateVoice',
+            'startRecord',
+            'stopRecord',
+            'onVoiceRecordEnd',
+            'playVoice',
+            'onVoicePlayEnd',
+            'pauseVoice',
+            'stopVoice',
+            'uploadVoice',
+            'downloadVoice',
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage',
+            'getNetworkType',
+            'openLocation',
+            'getLocation',
+            'hideOptionMenu',
+            'showOptionMenu',
+            'closeWindow',
+            'scanQRCode',
+            'chooseWXPay',
+            'openProductSpecificView',
+            'addCard',
+            'chooseCard',
+            'openCard'
+        ]
+    });
+</script>
+<script>
+    document.getElementById("test").addEventListener('click', function () {
+        wx.getLocation({
+            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+            success: function (res) {
+                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                var speed = res.speed; // 速度，以米/每秒计
+                var accuracy = res.accuracy; // 位置精度
+                $.ajax({
+                    type: "POST",
+                    url: "/api/search",
+                    // url: "/select",
+                    // type: "get",
+                    // data: {"danHao": code},
+                    data: {danHao: code},
+                    dataType: 'json',
+                    cache: false,
+                    // async: false,
+                    traditional: true,
+                    success: function (data) {
+                        var string1 = data[0]["id"];
+                        //$('#feedback').html(string);
+                        $('#feedback1').html(string1);
+                        console.log("SUCCESS : ", data);
+                        $("#btn-search").prop("disabled", false);
+                    },
+                    error: function (e) {
+                        alert("单号错误!");
+                        var json = "<h4>Ajax Response</h4><pre>"
+                            + e.responseText + "</pre>";
+                        $('#feedback').html(json);
+                        console.log("ERROR : ", e);
+                        $("#btn-search").prop("disabled", false);
+                    }
+                });
+            }
+        });
+    });
+</script>
+<script>
+    // $(function(){
+    //     var updateResult = document.getElementById("shurus").innerText;
+    //     // if(updateResult!=""){
+    //         alert(updateResult);
+    // });
+
+</script>
+
+<input id="shuru2s" type="text" th:value="${weiXinUser?.openId}"/>
+<!--
+<input id="eee" type="text" th:if="${weiXinUser != null}" th:value="${weiXinUser.openiId}" />
+<span th:if="${weiXinUser != null}" th:text="'欢迎您!&nbsp;' + ${session.user.username}">请登陆</span>
+
+-->
+
+<script>
+    var a = document.getElementById("shuru2s");
+    alert(666);
+    alert(a.value);
+    alert(33333333);
+    // <a href="javascript:;" class="weui-btn weui-btn_warn" onclick="save_ajaxs()" >下单</a>
+    function save_ajaxs() {
+        alert(56565);
+        var shurua = $("#shuru2s").val();//fuserName:shuru,
+        // var arr = shuru.split(',');
+        // alert(shuru);
+        //var shuruaa = "xcx";
+        alert(96969);
+        $.ajax({
+            type: "POST",
+            url: "/dizhibup2",
+            data: {openId:shurua},
+            dataType: 'json',
+            cache: false,
+            // async:false,
+            success: function (data) {
+                alert("成功啦！")
+                alert(data+666);
+
+                // var string1 = data[0]["id"];
+                //$('#feedback').html(string);
+            },
+            error: function (e) {
+                alert("保存失败555!");
+            }
+        });
+    }
+</script>
+
+<div id="container" style="height: 1300px">
+    <div id="yxk" style="position:absolute;z-index: 1400;">
+        <div onclick="alert(5678)">
+            <a href="http://not.natapp1.cc/lists/"></a><!--btn-info col-md-1-->
+        </div>
+    </div>
+    <div id="dizhibu" style="position:absolute;z-index: 1400;"><!--class="form-group col-md-offset-4-->
+        <div><!--control-label  col-md-3-->
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://not.natapp1.cc/dizhibup1/" onclick="save()">|&nbsp;地址簿</a><!--btn-info col-md-1-->
+            <!--<input type="text" style="visibility: hidden" value=""-->
+            <!--onclick="alert(987)"/>-->
+        </div>
+    </div>
+    <div id="dizhibu2" style="position:absolute;z-index: 1400;"><!--class="form-group col-md-offset-4-->
+        <div><!--control-label  col-md-3-->
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://not.natapp1.cc/dizhibup2/" onclick="saves(),save_ajaxs()">|&nbsp;地址簿</a><!--btn-info col-md-1-->
+        </div>
+    </div>
+    <div id="kdysms" style="position:absolute;z-index: 1000;">
+    </div>
+    <div id="kdysm" style="position:absolute;z-index: 1800;">
+        <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            快递员上门</h1>
+    </div>
+    <br/><br/><br/><br/><!--weui-cell__bd-->
+    <form class="form-horizontal" th:action="@{/editp}"  method="post"> <!--th:object="${addrs}"-->
+        <div class="weui-cells" style="position:absolute;z-index: 888;" id="xinxi">
+            <!--name="fcity" -->
+            <h5><input id="shuru" type="text" class="weui-input" placeholder="请输入文本"
+                       th:value="${ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+addrs?.fuserName+',&nbsp;'+addrs?.fcity+',&nbsp;'+addrs?.fphone}" name="tuserName"
+                       onclick="tiaozhuan(),tiaozhuanal()"/></h5>
+            <!--<input type="text" name="t" id="hidefphone" style="visibility: hidden" th:value="${addrs?.fphone}"/>-->
+
+            <!--<input type="text" name="fcity" id="test" th:type="hidden" value=""/>&lt;!&ndash;style="visibility: hidden"&ndash;&gt;-->
+            <!-- + '&nbsp;&nbsp;'+addrs?.fcity-->
+            <hr/><!--onclick="window.location=('http://not.natapp1.cc/shoujianren/')"-->
+            <h5><input id="shurus" type="text" class="weui-input" placeholder="请输入文本"
+                       th:value="${ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+addrs2?.fuserName+',&nbsp;'+addrs2?.fcity+',&nbsp;'+addrs2?.fphone}" name="tuserName"
+                       onclick="tiaozhuans(),tiaozhuanals()"/></h5>
+            <!--onclick="window.location=('http://not.natapp1.cc/shoujianren/')"/></h5>-->
+            <!--<input type="text" name="t" id="hidefphones" style="visibility: hidden" th:value="${addrs2?.fphone}"/>-->
+        </div>
+        <!--<div id="xiadan" style="position:absolute;z-index: 20000">-->
+        <!--<input type="submit" href="javascript:;" class="weui-btn weui-btn_warn" value="下单"/>&lt;!&ndash;weui-btn   weui-btn_primary&ndash;&gt;-->
+        <!--</div>-->
+    </form>
+</div>
+
+<div id="xiadan" style="position:absolute;z-index: 23000">
+    <!--<a href="javascript:;" class="weui-btn weui-btn_warn" onclick="save_ajax()" ><h5>查666询</h5></a>-->
+    <a href="javascript:;" class="weui-btn weui-btn_warn" onclick="save_ajax()" >下单</a>
+</div>
+
+<!--<div class="container" id="container">-->
+<!--<div class="page__ft j_bottom">-->
+<!--&lt;!&ndash;<a href="javascript:home()"><img src="./img/kdcx.png"/></a>&ndash;&gt;-->
+<!--<a href="http://not.natapp1.cc/lists/"><img src="./img/kdcx.png"/></a>-->
+<!--</div>-->
+<!--</div>-->
+<script type="text/javascript">
+    function save_ajax() {
+        var shuru = $("#shuru").val();//fuserName:shuru,
+        var arr = shuru.split(',');
+        var name = arr[0];
+        var addr = arr[1];
+        var phone = arr[2];
+        // alert(code);
+        // alert(code2);
+        // alert(code3);
+
+        var shurus = $("#shurus").val();//tuserName:shurus,
+        var arrs = shurus.split(',');
+        var names = arrs[0];//姓名
+        var addrs = arrs[1];//地址
+        var phones = arrs[2];//手机号码
+        // alert(codes);
+        // alert(codes2);
+        // alert(codes3);
+
+        var date = new Date();
+        var yearStr = String(date.getFullYear());
+        var monStr = String(date.getMonth()+1);
+        var dayStr = String(date.getDate());
+        var houStr = String(date.getHours());
+        var minStr = String(date.getMinutes());
+        var secStr = String(date.getSeconds());
+        var danHaos = yearStr+monStr+dayStr+houStr+minStr+secStr;
+        alert(danHaos);
+
+        // var yc = $("#hidefphone").val();
+        // alert(yc+369);
+        // var ycs = $("#hidefphones").val();
+        // alert(ycs+336699);
+        alert(999777333);
+        // var stu = {
+        //     //id:id,name:name,age:age
+        //     fuserName:name,tuserName:names,danHao:danHaos,fcity:addr,fphone:phone,tcity:addrs,tphone:phones
+        // }
+
+
+        $.ajax({
+            type: "POST",
+            url: "/api/usersave",
+            data: {fuserName:name,tuserName:names,danHao:danHaos,fcity:addr,fphone:phone,tcity:addrs,tphone:phones},
+            //data:{ids:JSON.stringify(stu)},
+            dataType: 'json',
+            cache: false,
+            // async:false,
+            success: function (data) {
+                // var string1 = data[0]["id"];
+                //$('#feedback').html(string);
+                // $('#feedback1').html(string1);
+                // //$('#feedback').html(string);
+                alert(5556556);
+                console.log("SUCCESS : ", data);
+                // $("#btn-search").prop("disabled", false);
+                alert("保存成功！");
+            },
+            error: function (e) {
+                alert(e+321);
+                alert("保存失败!");
+                var json = "<h4>Ajax Response</h4><pre>"
+                    + e.responseText + "</pre>";
+                $('#feedback').html(json);
+                console.log("ERROR : ", e);
+                $("#btn-search").prop("disabled", false);
+            }
+
+        });
+    }
+</script>
+
+
+<!--调用地图-->
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.10&amp;key=dd0168b12515e0403fd0eab22aa83330">
+</script>
+<script>
+    var map = map = new AMap.Map('container', {
+        resizeEnable: true,
+        zoom: 15, //初始化地图层级
+    });
+</script>
+
+<script type="text/javascript"
+        src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="css/main.js"></script>
+
+
+</body>
+
+
+</html>
+
+
+<!--<div id="div2" style="position:absolute;z-index: 1888;">-->
+<!--&lt;!&ndash;<input type="button" id="bt1" value="体育" onclick="bt1(this.value,this.id+1)" />&ndash;&gt;-->
+<!--<input type="button" onclick="window.location=('http://not.natapp1.cc/lists/')" th:text="999"/>-->
+<!--</div>-->
+
+
+<div id="div2" style="position:absolute;z-index: 1888;">
+    <!--<input type="button" id="bt1" value="体育" onclick="bt1(this.value,this.id+1)" />-->
+    <input type="button" onclick="window.location.href('http://not.natapp1.cc/lists/')" />
+</div>
+
+
+
+<!--<form class="form-horizontal" th:action="@{/editp}" th:object="${addrs}" method="post">-->
+<!--<input type="hidden" name="id" th:value="*{id}" />&lt;!&ndash;这个必须得加，不加就只是添加而不是修改了&ndash;&gt;-->
+<!--<div class="weui-cell">-->
+<!--&lt;!&ndash;<div class="weui-cell__bd">&ndash;&gt;-->
+<!--<div id="xm">-->
+<!--<input type="text" class="weui-input" placeholder="姓名"  name="fuserName" id="fuserName" th:value="*{fuserName}"/>-->
+<!--&lt;!&ndash; onclick="window.location=('http://not.natapp1.cc/lists/')"&ndash;&gt;-->
+<!--</div>-->
+<!--|&nbsp;&nbsp;<input type="text" class="weui-input"-->
+<!--placeholder="&nbsp;&nbsp;&nbsp;手机或固话"  name="fphone" id="fphone" th:value="*{fphone}"/>-->
+<!--</div>-->
+
+<!--<div class="weui-cell">-->
+<!--<input type="text" class="weui-input" placeholder="详细地址" name="fcity" id="fcity" th:value="*{fcity}"/>-->
+<!--</div>-->
+<!--<input type="submit" href="javascript:;" class="weui-btn weui-btn_warn" value="确认"/>&lt;!&ndash;weui-btn   weui-btn_primary&ndash;&gt;-->
+<!--</form>-->
+
+
+<!--<div id="div2" style="position:absolute;z-index: 1888;">-->
+<!--&lt;!&ndash;<input type="button" id="bt1" value="体育" onclick="bt1(this.value,this.id+1)" />&ndash;&gt;-->
+<!--<input type="text" onclick="window.location=('http://not.natapp1.cc/lists/')" value=""/>-->
+<!--</div>-->
+
+
+<!--<div class="container" id="ji" style="position:absolute;z-index: 1200;">-->
+<!--<div class="page__ft j_bottom">-->
+<!--&lt;!&ndash;<a href="javascript:home()"><img src="./img/kdcx.png"/></a>&ndash;&gt;-->
+<!--<img src="./img/ji.jpg" style="height: 30px"/>-->
+<!--</div>&lt;!&ndash;<a href="http://not.natapp1.cc/lists/">&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="container" id="shou" style="position:absolute;z-index: 1200;">-->
+<!--<div class="page__ft j_bottom">-->
+<!--&lt;!&ndash;<a href="javascript:home()"><img src="./img/kdcx.png"/></a>&ndash;&gt;-->
+<!--<img src="./img/shou.jpg" style="height: 30px"/>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="weui-cells" id="xinxi" style="position:absolute;z-index: 1200;" >-->
+<!--<div class="weui-cell__bd">-->
+<!--&lt;!&ndash;<img src="./img/ji.jpg" style="height: 50px" align="absmiddle"/>&ndash;&gt;-->
+<!--<h4><input id="ss" type="text" class="weui-input" placeholder="请输入文本"-->
+<!--th:value="${users.id+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+users.fuserName+-->
+<!--'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+users.fcity}"  /></h4>-->
+<!--<hr/>-->
+<!--<h4><input id="ss" type="text" class="weui-input" placeholder="请输入文本"-->
+<!--th:value="${users.id+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+users.tuserName+-->
+<!--'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+users.tcity}"  /></h4>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="container" id="ji" style="position:absolute;z-index: 1200;">-->
+<!--<div class="page__ft j_bottom">-->
+<!--&lt;!&ndash;<a href="javascript:home()"><img src="./img/kdcx.png"/></a>&ndash;&gt;-->
+<!--<img src="./img/ji.jpg" style="height: 30px"/>-->
+<!--</div>&lt;!&ndash;<a href="http://not.natapp1.cc/lists/">&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="container" id="shou">-->
+<!--<div class="page__ft j_bottom">-->
+<!--&lt;!&ndash;<a href="javascript:home()"><img src="./img/kdcx.png"/></a>&ndash;&gt;-->
+<!--<img src="./img/shou.jpg" style="height: 30px"/>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="form-group col-md-offset-4  btn-block" id="xiadan" z-index="1000">-->
+<!--<div class="col-md-3 control-label">-->
+<!--<a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info col-md-6 ">下 单</a>&lt;!&ndash;btn-info&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<th scope="row" th:text="${user.id}">1</th>-->
+<!--document.getElementById("test").innerText = result[0].value;-->
+<!--<td th:text="${user.fuserName}"><h1>888</h1></td>-->
+
+<!--<td th:text="${user.fphone}">ph</td>-->
+<!--<td th:text="${user.tphone}">phs</td>-->
+<!--<td th:text="${user.fcity}"><h1>888</h1></td>-->
+<!--<td th:text="${user.tcity}">css</td>-->
+<!--<td th:text="${user.price}">16</td>-->
+<!--<td th:text="${user.picture}">sss</td>-->
+<!--<td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>-->
+<!--<td><a th:href="@{/delete(id=${user.id})}">delete</a></td>-->
+<!--<tr th:each="user:${users}">-->
+<!--<th scope="row" th:text="${user.id}">1</th>-->
+<!--<td th:text="${user.tuserName}">neos</td>-->
+<!--<td th:text="${user.tcity}">css</td>-->
+
+
+<!--<div class="weui-cells">-->
+<!--<div class="weui-cell">-->
+<!--<div class="weui-cell__bd">-->
+<!--<input class="weui-input" type="text" placeholder="请输入文本"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="container" id="container">-->
+<!--<div class="page__bd">-->
+<!--<a href="javascript:;" class="weui-btn weui-btn_warn" onclick="fire_ajaxs()">查 555 询</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<script>-->
+<!--$(function () {-->
+<!--fire_ajaxs();-->
+<!--});-->
+<!--function fire_ajaxs() {-->
+<!--// document.getElementById("ss").innerText = 123;-->
+<!--// var search = $("#username").val();-->
+<!--$.ajax({-->
+<!--type: "POST",-->
+<!--url: "/api/searchs",-->
+<!--data: {},-->
+<!--dataType: 'json',-->
+<!--cache: false,-->
+<!--success: function (data) {-->
+<!--alert(data[0]["fuserName"]);-->
+<!--$("#ss").val(data[0]["fuserName"]);-->
+<!--$("#ss").val(data[0]["tuserName"]);-->
+<!--console.log("SUCCESS : ", data);-->
+<!--$("#btn-search").prop("disabled", false);-->
+<!--},-->
+<!--error: function (e) {-->
+<!--alert("单号错误!");-->
+<!--var json = "<h4>Ajax Response</h4><pre>"-->
+<!--+ e.responseText + "</pre>";-->
+<!--$('#feedback').html(json);-->
+
+<!--console.log("ERROR : ", e);-->
+<!--$("#btn-search").prop("disabled", false);-->
+
+<!--}-->
+<!--});-->
+<!--}-->
+<!--</script>-->

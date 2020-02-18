@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,
+   minimum-scale=1,user-scalable=no"></meta>
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <style >
+        .aa{
+            width:1200px;
+            height:600px;
+            margin-top: 120px;
+            background-image:url(img/home-bg.jpg);
+            background-repeat:no-repeat;
+            background-size: 2000px 1000px;
+        }
+        .biaodanziti{
+            color: #ac2925;
+        }
+
+        .biaodans{
+            color: #bce8f1;
+        }
+
+    </style>
+</head>
+<body class="aa img-responsive center-block" >
+*
+<!--<div class="img-fluid" style="width:100px; height:100px; background:url(img/home-bg.jpg);"></div>-->
+<!--<img src="img/home-bg.jpg" class="rounded" alt="Cinque Terre">-->
+<div class="biaodan"><!--container-->
+    <div class="biaodans"><!--row clearfix-->
+        <br/><br/><br/><br/><br/><br/><br/><br/>
+        <div class="col-md-3 col-md-offset-4">
+            <!--  <div class="col-md-3 column ">col-md-pullh-8-->
+            <form class="biaodanziti" role="form" method="POST" th:action="@{/userLogin}" th:object="${user}">
+                <label for="username">用户名</label>
+                <input type="text" class="form-control " id="username" th:field="*{username}" />
+                <label for="password">密码</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}" />
+                <br/>
+                <button type="submit" class="btn btn-info btn-block ">登 录</button>
+            </form>
+            <ul class="btn center-block">
+                <a href="register.html" class="btn center-block btn-default btn-success btn-block" >注 册</a>
+            </ul><!--<li role="presentation"> </li>-->
+            <br/>
+            <!--
+                        <ul class="nav nav-pills  btn-block">
+            -->
+            <!-- <ul class="btn btn-info   btn-block">
+                 <li role="presentation"><a href="register.html" class="href" target="_blank">Sign up</a></li>
+             </ul>
+ -->
+                 <!--<ul class="btn btn-info ">-->
+                      <!--<a th:href="register.html" class="btn btn-info " target="_blank">Sign up</a>-->
+                  <!--</ul>-->
+            <!--<ul class="nav nav-pills">-->
+                <!--<li role="presentation"><a href="register.html" class="href" target="_blank">Sign up</a></li>-->
+            <!--</ul>-->
+            <!--<form  role="form" method="POST" th:action="@{/toRegister}" th:object="${user}">-->
+                <!--<button type="submit" class="btn btn-info btn-block ">注册</button>-->
+            <!--</form>-->
+
+           <!-- <ul class="btn center-block">
+                &lt;!&ndash;<a th:href="register.html" class="btn btn-success btn-block" target="_blank">Sign up</a>&ndash;&gt;
+                <a th:href="register.html" class="btn center-block btn-default btn-success btn-block" >注 册</a>
+                &lt;!&ndash; <li role="presentation"><a href="register.html" class="href" target="_blank">Sign up</a></li>&ndash;&gt;
+            </ul>-->
+
+            <!--<a href="#trainer" class="btn btn-default smoothScroll" >xxx</a>-->
+           <!-- <div class="form-group col-md-offset-4  btn-block">
+                <button class="col-md-3 control-label">
+                    <a  th:href="@{/toRegister}" class="btn btn-info btn-block">注册</a>
+                </button>
+            </div>-->
+            <!--<form>-->
+            <!--<button th:href="@{/toRegister}" class="btn btn-info btn-block ">登 录</button>-->
+            <!--</form>-->
+
+        </div>
+
+     </div>
+</div>
+</body>
+</html>

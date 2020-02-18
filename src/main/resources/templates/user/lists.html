@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0,user-scalable=0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <!--<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>-->
+
+
+    <title>Document</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="css/main.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+
+    <!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>-->
+    <!--<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.4/weui.min.js"></script>-->
+
+    <!--<script type="text/javascript" src="css/main.js"></script>-->
+    <!--<link href="/css/weui.css" rel="stylesheet"/>-->
+    <!--<link href="/css/example.css" rel="stylesheet"/>-->
+
+    <!--<script src="../js/mui.js"></script>-->
+    <style type="text/css">
+        #biankuang{
+            /*margin-left: 100px;*/
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body class="container">
+<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.js" type="text/javascript" charset="utf-8"></script>
+<!--引入微信的两个js-->
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--weui.min.js有版本之分，在低版本的js中有些功能不完善，在高版本会支持-->
+<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.4/weui.min.js"></script>
+<script type="text/javascript" src="../js/city-picker.js" charset="utf-8"></script>
+<!--<h1 th:text="${weiXinUser.nickname}"></h1>-->
+
+<div>
+    <a id="test" href="javascript:;" class="weui-btn weui-btn_plain-primary">扫码查询</a>
+    <input id="s1" type="hidden" th:value="${signature}"/>
+    <input id="s2" type="hidden" th:value="${timestamp}"/>
+    <input id="s3" type="hidden" th:value="${nonceStr}"/>
+
+</div>
+<!---->
+
+<!---->
+
+<!--搜索框-->
+<div class="container" id="container">
+    <div class="page__bd">
+        <!--<a href="javascrip
+            t:;" class="weui-btn weui-btn_primary">点击展现searchBar</a>-->
+        <div class="weui-search-bar" id="searchBar">
+            <!--99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999搜索条-->
+            <form class="weui-search-bar__form">
+                <div class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required=""/>
+                    <!--99999999999999999999999搜索输入99999-->
+                    <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    <!--99999999999999999999999999999999999999999999999999999999搜索清除99999-->
+                </div>
+                <label class="weui-search-bar__label" id="searchText"
+                       style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);"><!--9搜索文本999-->
+                    <i class="weui-icon-search"></i>
+                    <span>搜索</span>
+                </label>
+
+                <!--<a href="javascript:;" class="weui-btn weui-btn_warn" onclick="fire_ajax()">查 555 询</a>-->
+
+            </form>
+
+
+            <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            <!--99999999999999999999999999999999999999999999999999搜索取消9999-->
+        </div>
+        <a href="javascript:;" class="weui-btn weui-btn_warn" onclick="fire_ajax()"><h5>查 询</h5></a>
+
+
+        <!--<h4>订&nbsp;&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;&nbsp;号：</h4>-->
+        <!--<h4>-->
+            <!--<div id="feedback1"></div>-->
+        <!--</h4>-->
+        <!--<h4>发&nbsp;&nbsp;&nbsp;&nbsp;货&nbsp;&nbsp;&nbsp;&nbsp;人:-->
+            <!--<div id="feedback2"></div>-->
+        <!--</h4>-->
+        <!--<h4>收&nbsp;&nbsp;&nbsp;&nbsp;货 &nbsp;&nbsp;&nbsp;&nbsp;人:-->
+            <!--<div id="feedback3"></div>-->
+        <!--</h4>-->
+        <!--<h4>发货人号码:-->
+            <!--<div id="feedback4"></div>-->
+        <!--</h4>-->
+        <!--<h4>收货人号码:-->
+            <!--<div id="feedback5"></div>-->
+        <!--</h4>-->
+        <!--<h4>发货&nbsp;&nbsp;&nbsp;&nbsp;地址:-->
+            <!--<div id="feedback6"></div>-->
+        <!--</h4>-->
+        <!--<h4>收货&nbsp;&nbsp;&nbsp;&nbsp;地址:-->
+            <!--<div id="feedback7"></div>-->
+        <!--</h4>-->
+        <!--<h4>运送&nbsp;&nbsp;&nbsp;&nbsp;费用:-->
+            <!--<div id="feedback8"></div>-->
+        <!--</h4>-->
+        <!--<h4>货物&nbsp;&nbsp;&nbsp;&nbsp;图片:-->
+            <!--<div id="feedback9"></div>-->
+        <!--</h4>-->
+        <!--<h4>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:-->
+            <!--<div id="feedback10"></div>-->
+        <!--</h4>-->
+        <div class="weui-cells" style="position:absolute;z-index: 1700;" id="biankuang">
+            <div class="weui-cell">
+                <!--<div class="weui-cell__bd">-->
+                <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="订&nbsp;&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;&nbsp;号:"/>
+                    <!-- onclick="window.location=('http://not.natapp1.cc/lists/')"-->
+                </div>
+                <div id="feedback10"></div>
+             </div>
+            <div class="weui-cell">
+                <!--<div class="weui-cell__bd">-->
+                <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="发&nbsp;&nbsp;&nbsp;&nbsp;货&nbsp;&nbsp;&nbsp;&nbsp;人:"/>
+                 </div>
+                <div id="feedback2"></div>
+             </div>
+            <div class="weui-cell">
+                <!--<div class="weui-cell__bd">-->
+                <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="收&nbsp;&nbsp;&nbsp;&nbsp;货 &nbsp;&nbsp;&nbsp;&nbsp;人:"/>
+                 </div>
+                <div id="feedback3"></div>
+             </div>
+            <div class="weui-cell">
+                <!--<div class="weui-cell__bd">-->
+                <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="发货人号码:"/>
+                 </div>
+                <div id="feedback4"></div>
+             </div>
+            <div class="weui-cell">
+                <!--<div class="weui-cell__bd">-->
+                <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="收货人号码："/>
+                 </div>
+                <div id="feedback5"></div>
+             </div>
+            <div class="weui-cell">
+                 <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="发货&nbsp;&nbsp;&nbsp;&nbsp;地址:"/>
+                 </div>
+                <div id="feedback6"></div>
+             </div>
+            <div class="weui-cell">
+                 <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="收货&nbsp;&nbsp;&nbsp;&nbsp;地址:"/>
+                 </div>
+                <div id="feedback7"></div>
+             </div>
+            <div class="weui-cell">
+                 <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="运送&nbsp;&nbsp;&nbsp;&nbsp;费用:"/>
+                 </div>
+                <div id="feedback8"></div>
+             </div>
+            <div class="weui-cell">
+                <!--<div class="weui-cell__bd">-->
+                <div id="xm">
+                    <input id="ss" type="text" class="weui-input" placeholder="货物&nbsp;&nbsp;&nbsp;&nbsp;图片："/>
+                 </div>
+                <div id="feedback9"></div>
+             </div>
+
+
+        </div>
+
+
+
+        <!--<a href="javascript:;" class="weui-btn weui-btn_warn" onclick="fire_ajax()">查 5555 询</a>-->
+
+        <!--<div class="weui-cells searchbar-result" id="searchResult" style="display: none;">-->
+        <!--<div class="weui-cell weui-cell_access">-->
+        <!--<div class="weui-cell__bd weui-cell_primary">-->
+        <!--<p>实时搜索文本</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="weui-cell weui-cell_access">-->
+        <!--<div class="weui-cell__bd weui-cell_primary">-->
+        <!--<p>实时搜索文本</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="weui-cell weui-cell_access">-->
+        <!--<div class="weui-cell__bd weui-cell_primary">-->
+        <!--<p>实时搜索文本</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="weui-cell weui-cell_access">-->
+        <!--<div class="weui-cell__bd weui-cell_primary">-->
+        <!--<p>实时搜索文本</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>&lt;!&ndash;99999999999999999999999999999999999999999999999999999搜索结果99&ndash;&gt;-->
+
+    </div>
+    <!--<div class="page__ft j_bottom">-->
+    <!--<a href="javascript:home()"><img src="./img/kdcx.png"/></a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <script type="text/javascript" class="searchbar js_show">
+        $(function () {
+            var $searchBar = $('#searchBar'),
+                $searchResult = $('#searchResult'),
+                $searchText = $('#searchText'),
+                $searchInput = $('#searchInput'),
+                $searchClear = $('#searchClear'),
+                $searchCancel = $('#searchCancel');
+
+            function hideSearchResult() {/*隐藏搜索结果*/
+                $searchResult.hide();
+                $searchInput.val('');
+            }
+
+            function hideSearchResult() {
+                hideSearchResult();
+                $searchBar.removeClass('weui-search-bar_focusing');
+                $searchText.show();
+            }
+
+            $searchText.on('click', function () {
+                $searchBar.addClass('weui-search-bar_focusing');
+                $searchInput.focus();
+            });
+            $searchInput
+                .on('blur', function () {
+                    if (!this.value.length) cancelSearch();
+                })
+                .on('input', function () {
+                    if (this.value.length) {
+
+
+                        $searchResult.show();
+                    } else {
+                        $searchResult.hide();
+                    }
+                })
+            ;
+            $searchClear.on('click', function () {
+                hideSearchResult();
+                $searchInput.focus();
+            });
+            $searchCancel.on('click', function () {
+                cancelSearch();
+                $searchInput.blur();
+            });
+        });
+    </script>
+
+</div>
+
+<script>
+    function fire_ajax() {
+        var search = $("#searchInput").val();
+        $.ajax({
+            type: "POST",
+            url: "/api/search",
+            data: {danHao: search},
+            dataType: 'json',
+            cache: false,
+            // async:false,
+            success: function (data) {
+                var string1 = data[0]["id"];
+                var string2 = data[0]["fuserName"];
+                var string10 = data[0]["danHao"];
+                var string3 = data[0]["tuserName"];
+                var string4 = data[0]["fphone"];
+                var string5 = data[0]["tphone"];
+                var string6 = data[0]["fcity"];
+                var string7 = data[0]["tcity"];
+                var string8 = data[0]["price"];
+                var string9 = data[0]["picture"];
+                //$('#feedback').html(string);
+                $('#feedback1').html(string1);
+                $('#feedback2').html(string2);
+                $('#feedback3').html(string3);
+                $('#feedback4').html(string4);
+                $('#feedback5').html(string5);
+                $('#feedback6').html(string6);
+                $('#feedback7').html(string7);
+                $('#feedback8').html(string8);
+                $('#feedback9').html(string9);
+                $('#feedback10').html(string10);
+                //$('#feedback').html(string);
+                console.log("SUCCESS : ", data);
+                $("#btn-search").prop("disabled", false);
+
+            },
+            error: function (e) {
+                alert("单号错误!");
+                var json = "<h4>Ajax Response</h4><pre>"
+                    + e.responseText + "</pre>";
+                $('#feedback').html(json);
+
+                console.log("ERROR : ", e);
+                $("#btn-search").prop("disabled", false);
+            }
+
+        });
+    }
+</script>
+<script type="text/javascript"
+        src="webjars/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="css/main.js"></script>
+<!---->
+<!--九宫格-->
+<!--<div class="page grid js_show">-->
+<!--<div class="weui-grids">-->
+<!--<a href="javascript:;" class="weui-grid">-->
+<!--<div class="weui-grid__icon">-->
+<!--<img src="./img/kdcx2.png" alt="" />-->
+<!--</div>-->
+<!--&lt;!&ndash;<p class="weui-grid__label">Grid</p>&ndash;&gt;-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+
+<script>
+    var s1 = document.getElementById('s1').value;
+    var s2 = document.getElementById('s2').value;
+    var s3 = document.getElementById('s3').value;
+
+    /*
+     * 注意：
+     * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+     * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+     * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+     *
+     * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+     * 邮箱地址：weixin-open@qq.com
+     * 邮件主题：【微信JS-SDK反馈】具体问题
+     * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+     */
+    wx.config({
+        debug: false,
+        appId: 'wx53f704e68305cde5',
+        timestamp: parseInt(s2),
+        nonceStr: s3,
+        signature: s1,
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'onMenuShareQZone',
+            'hideMenuItems',
+            'showMenuItems',
+            'hideAllNonBaseMenuItem',
+            'showAllNonBaseMenuItem',
+            'translateVoice',
+            'startRecord',
+            'stopRecord',
+            'onVoiceRecordEnd',
+            'playVoice',
+            'onVoicePlayEnd',
+            'pauseVoice',
+            'stopVoice',
+            'uploadVoice',
+            'downloadVoice',
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage',
+            'getNetworkType',
+            'openLocation',
+            'getLocation',
+            'hideOptionMenu',
+            'showOptionMenu',
+            'closeWindow',
+            'scanQRCode',
+            'chooseWXPay',
+            'openProductSpecificView',
+            'addCard',
+            'chooseCard',
+            'openCard'
+        ]
+    });
+
+</script>
+<!--<div class="form-group has-success">-->
+<!--<input type="text" name="tcity" id="test1"  value=""/>-->
+
+<!--</div>-->
+<!--<script>-->
+<!--// wx.getLocation({-->
+<!--//     type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'-->
+<!--//     success: function (res) {-->
+<!--//         var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90-->
+<!--//         var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。-->
+<!--//         var speed = res.speed; // 速度，以米/每秒计-->
+<!--//         var accuracy = res.accuracy; // 位置精度-->
+<!--//     }-->
+<!--// });-->
+<!--//-->
+
+<!--$(function() {-->
+<!--var url = window.location.href;-->
+<!--var userId = $("#userId").val();-->
+<!--// var openId = $("#sessionOpenId").val();-->
+<!--// alert("openId = " + openId);-->
+<!--if ($("#path").val() != null && $("#path").val() != ''-->
+<!--&& typeof ($("#path").val()) != 'undefined') {-->
+<!--if ($('#path').val().indexOf('msbh') != -1) {-->
+<!--userId = $('#userId_share').val();-->
+<!--}-->
+<!--}-->
+<!--$.post("http://www.quanqiuyouhui.com/kabao-api/getShareData.do", {-->
+<!--'url' : url,-->
+<!--'userId' : userId-->
+<!--}, function(data) {-->
+<!--data = eval("(" + data + ")");-->
+<!--wx.config({-->
+<!--debug : false,-->
+<!--appId : data.map.appId,-->
+<!--timestamp : data.map.timestamp,-->
+<!--nonceStr : data.map.nonceStr,-->
+<!--signature : data.map.signature,-->
+<!--jsApiList : [ 'checkJsApi', 'onMenuShareTimeline',-->
+<!--'onMenuShareAppMessage', 'getLocation', 'openLocation',-->
+<!--'hideOptionMenu' ]-->
+<!--});-->
+<!--wx.ready(function() {-->
+<!--// 1 判断当前版本是否支持指定 JS 接口，支持批量判断-->
+<!--wx.checkJsApi({-->
+<!--jsApiList : [ 'getNetworkType', 'previewImage' ],-->
+<!--success : function(res) {-->
+<!--// 以键值对的形式返回，可用的api值true，不可用为false-->
+<!--// 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}-->
+<!--}-->
+<!--});-->
+<!--wx.hideOptionMenu();-->
+<!--// 2. 分享接口-->
+<!--wx.getLocation({-->
+<!--type : 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'-->
+<!--success : function(res) {-->
+<!--// alert(JSON.stringify(res));-->
+<!--var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90-->
+<!--// $("#latitude").val(latitude);-->
+<!--var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。-->
+<!--// $("#longitude").val(longitude);-->
+<!--var speed = res.speed; // 速度，以米/每秒计-->
+<!--// $("#speed").val(speed);-->
+<!--var accuracy = res.accuracy; // 位置精度-->
+<!--// $("#accuracy").val(accuracy);-->
+<!--},-->
+<!--cancel : function(res) {-->
+<!--alert('用户拒绝授权获取地理位置');-->
+<!--}-->
+<!--});-->
+<!--// 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口-->
+<!--$(".icon").on('click', function() {-->
+<!--//注意：因为苹果手机默认浏览器将使用 attr('')获得的信息默认为字符串格式所以不会打开地图，需要先用parseFloat（）将获得的经纬度转换一下如下-->
+<!--var a = $(this).attr("latitude");-->
+
+<!--a = parseFloat(a);-->
+<!--var b = $(this).attr("longitude");-->
+<!--b = parseFloat(b);-->
+<!--// alert(b);-->
+<!--var c = $(this).attr("businessName");-->
+<!--// alert(c);-->
+<!--var d = $(this).attr("address");-->
+<!--// alert(d);-->
+<!--wx.openLocation({-->
+<!--latitude : a,-->
+<!--longitude : b,-->
+<!--name : c,-->
+<!--address : d,-->
+<!--scale : 14,-->
+<!--infoUrl : 'http://www.quanqiuyouhui.com/kabao-api/pgyqr.do'-->
+<!--});-->
+
+<!--})-->
+<!--// &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--});-->
+<!--});-->
+
+<!--});-->
+
+
+<!--</script>-->
+<script>
+    function getLocation() {
+        wx.getLocation({
+            type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+            success: function (res) {
+                //使用微信内置地图查看位置接口
+                wx.openLocation({
+                    latitude: res.latitude, // 纬度，浮点数，范围为90 ~ -90
+                    longitude: res.longitude, // 经度，浮点数，范围为180 ~ -180。
+                    name: '我的位置', // 位置名
+                    address: '329创业者社区', // 地址详情说明
+                    scale: 28, // 地图缩放级别,整形值,范围从1~28。默认为最大
+                    infoUrl: 'http://www.gongjuji.net' // 在查看位置界面底部显示的超链接,可点击跳转（测试好像不可用）
+                });
+            },
+            cancel: function (res) {
+
+            }
+        });
+    }
+
+
+</script>
+
+
+<script>
+    document.getElementById("test").addEventListener('click', function () {
+        wx.scanQRCode({
+            needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            success: function (res) {
+                var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                var arr = result.split(',');
+                var code = arr[1];
+                 alert(code);
+                $.ajax({
+                    type: "POST",
+                    url: "/api/search",
+                    // url: "/select",
+                    // type: "get",
+                    // data: {"danHao": code},
+                    data: {danHao: code},
+                    dataType: 'json',
+                    cache: false,
+                    // async: false,
+                    traditional: true,
+                    success: function (data) {
+                        var string10 = data[0]["danHao"];
+                        var string1 = data[0]["id"];
+                        var string2 = data[0]["fuserName"];
+                        // var string10 = data[0]["danHao"];
+                        var string3 = data[0]["tuserName"];
+                        var string4 = data[0]["fphone"];
+                        var string5 = data[0]["tphone"];
+                        var string6 = data[0]["fcity"];
+                        var string7 = data[0]["tcity"];
+                        var string8 = data[0]["price"];
+                        var string9 = data[0]["picture"];
+                        //$('#feedback').html(string);
+                        $('#feedback1').html(string1);
+                        $('#feedback2').html(string2);
+                        $('#feedback3').html(string3);
+                        $('#feedback4').html(string4);
+                        $('#feedback5').html(string5);
+                        $('#feedback6').html(string6);
+                        $('#feedback7').html(string7);
+                        $('#feedback8').html(string8);
+                        $('#feedback9').html(string9);
+                        $('#feedback10').html(string10);
+                        //$('#feedback').html(string);
+                        console.log("SUCCESS : ", data);
+                        $("#btn-search").prop("disabled", false);
+
+                    },
+                    error: function (e) {
+                        alert("单号错误!");
+                        var json = "<h4>Ajax Response</h4><pre>"
+                            + e.responseText + "</pre>";
+                        $('#feedback').html(json);
+
+                        console.log("ERROR : ", e);
+                        $("#btn-search").prop("disabled", false);
+                    }
+
+                });
+            }
+        });
+    });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,
+       minimum-scale=1,user-scalable=no"></meta>
+    <title>selectResult</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <!--<style>-->
+    <!--table{-->
+    <!--table-layout:fixed;-->
+    <!--width: 30px;-->
+    <!--}-->
+
+    <!--#tables{-->
+    <!--table-layout:fixed;-->
+    <!--width: 300px;-->
+    <!--position: absolute;-->
+    <!--left: 150px;-->
+    <!--top: 80px;-->
+    <!--}-->
+
+    <!--.h{-->
+    <!--table-layout:fixed;-->
+    <!--position: absolute;-->
+    <!--left: 150px;-->
+    <!--top: 25px;-->
+    <!--}-->
+
+    <!--/*.noprint{visibility:hidden}*/-->
+    <!--.print{-->
+    <!--table-layout:fixed;-->
+    <!--position: absolute;-->
+    <!--left: 395px;-->
+    <!--/*top: 20px;*/-->
+    <!--display: table;-->
+    <!--/*width: 200px;*/-->
+    <!--/*margin-left: 560px;*/-->
+    <!--/*margin-right: 100px;*/-->
+    <!--}-->
+    <!--</style>-->
+
+
+    <style>
+        table {
+            table-layout: fixed;
+            /*width: 30px;*/
+        }
+
+        /*#tables{*/
+        /*table-layout:fixed;*/
+        /*width: 300px;*/
+        /*position: absolute;*/
+        /*left: 150px;*/
+        /*top: 80px;*/
+        /*}*/
+
+        /*.h{*/
+        /*table-layout:fixed;*/
+        /*position: absolute;*/
+        /*left: 150px;*/
+        /*top: 25px;*/
+        /*}*/
+
+        /*!*.noprint{visibility:hidden}*!*/
+        /*.print{*/
+        /*table-layout:fixed;*/
+        /*position: absolute;*/
+        /*!*left: 395px;*!*/
+        /*top: 400px;*/
+        /*!*display: table;*!*/
+        /*!*width: 200px;*!*/
+        /*!*margin-left: 560px;*!*/
+        /*!*margin-right: 100px;*!*/
+        /*}*/
+    </style>
+    <style type="text/css"></style>
+</head>
+<body class="container">
+<br/>
+<!--<h1 class="h">用户列表</h1>-->
+<h2 class="h col-md-3 col-md-offset-4">&nbsp;&nbsp;查询结果:</h2>
+<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--<style media=print type="text/css">-->
+<!--.noprint{visibility:hidden}-->
+<!--</style>-->
+<!--打印-->
+<div class=" col-md-1 col-md-pull-1"><!--col-md-offset-3   col-md-pull-1是左移  col-md-pull-1是右移-->
+    <!--push  和pull是相对定位 ，offset只能向右偏移-->
+    <div class="print">
+        <h1><p class="noprint"><a class="btn btn-info" href="javascript:window.print()" target="_self">打印</a></p></h1>
+    </div><!--center-block btn-default  btn-block -->
+</div>
+<div class="col-md-3 col-md-offset-4"><!--class="with:20%"   col-md-offset-1-->
+    <table id="tables" class="table  table-bordered   table-striped  table-hover">
+        <thead>
+        <tr class="success">
+            <th class="col-md-1">ID</th>
+            <td class="col-md-1" th:text="${result.id}">neo</td>
+        </tr>
+        <tr>
+            <th class="col-md-1">单号</th>
+            <td class="col-md-1" th:text="${result.danHao}">neo</td>
+        </tr>
+        <tr class="success">
+            <th class="col-md-1">始发地</th>
+            <td class="col-md-1" th:text="${result.fcity}">neo</td>
+        </tr>
+        <tr>
+            <th class="col-md-1">发送人号码</th>
+            <td class="col-md-1" th:text="${result.fphone}">neo</td>
+        </tr>
+        <tr class="success">
+            <th class="col-md-1">发送人姓名</th>
+            <td class="col-md-1" th:text="${result.fuserName}">neo</td>
+        </tr>
+        <tr>
+            <th class="col-md-1">图片</th>
+            <td class="col-md-1" th:text="${result.picture}">neo</td>
+        </tr>
+        <tr class="success">
+            <th class="col-md-1">价格</th>
+            <td class="col-md-1" th:text="${result.price}">neo</td>
+        </tr>
+        <tr>
+            <th class="col-md-1">目的地</th>
+            <td class="col-md-1" th:text="${result.tcity}">neo</td>
+        </tr>
+        <tr class="success">
+            <th class="col-md-1">收货人号码</th>
+            <td class="col-md-1" th:text="${result.tphone}">neo</td>
+        </tr>
+        <tr>
+            <th class="col-md-1">收货人姓名</th>
+            <td class="col-md-1" th:text="${result.tuserName}">neo</td>
+        </tr>
+        </thead>
+        <tbody>
+        <!--<div class="col-md-2 col-md-offset-3  ">&lt;!&ndash;col-md-offset-1&ndash;&gt;-->
+        <!--<tr >-->
+        <!--<td ><a  class="btn btn-info"  th:href="@{/toEdit(id=${result.id})}">编 辑</a> </td>-->
+        <!--<td ><a  class="btn btn-info"  th:href="@{/delete(id=${result.id})}">删除订单</a> </td>-->
+        <!--</tr>-->
+        <!--</div>-->
+        <div class="col-md-2 col-md-offset-3  "><!--col-md-offset-1-->
+            <tr>
+                <td><a th:href="@{/toEdit(id=${result.id})}">编 辑</a></td>
+                <td><a th:href="@{/delete(id=${result.id})}">删除订单</a></td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+</div>
+<!--打印-->
+
+
+</body>
+</html>

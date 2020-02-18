@@ -1,0 +1,252 @@
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<meta name="viewport"-->
+<!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+<!--<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+<!--<title>Document</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<script>-->
+<!--//这个设置你的授权回调地址，这个地址是你想让用户真正访问的页面-->
+<!--$base = 'http://not.natapp1.cc/lists';-->
+
+<!--//这个设置你的appid-->
+<!--$appid = "wx53f704e68305cde5";-->
+
+<!--//这个设置你的开发者secret，你要不知道我也没办法-->
+<!--$secret = "72aa5fa5c0d4a50efe13aa7697d73c2f";-->
+
+<!--//这个是用户的点击url，具体参数参考文档，我们通过这个可以获得授权-->
+<!--$clickurl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$appid."&&redirect_uri=".urlencode($base).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';-->
+
+<!--//用户点击上面的地址以后，会出现一个授权界面，点击确认按钮，微信服务器会给我们一个回调，里面有一个code参数，这个参数就是我们需要的，接着我们就可以根据这个回调参数调取微信的api了-->
+<!--if(isset($_REQUEST['code'])){-->
+<!--//生成调取api的地址-->
+<!--$requesturl = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$secret.'&code='.$_REQUEST['code'].'&grant_type=authorization_code';-->
+<!--$result = file_get_contents($requesturl);-->
+<!--$result = json_decode($result, true);-->
+
+<!--//生成获取用户信息的地址-->
+<!--$getuser = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$result['access_token'].'&openid='.$result['openid'].'&lang=zh_CN';-->
+<!--$info = file_get_contents($getuser);-->
+<!--//最后得到$info 数组，这个数据里面包含用户数据的具体信息，具体这个东西看文档就好啦~写的很清楚-->
+<!--$info = json_decode($info, true);-->
+<!--//这里有headimgurl 是头像-->
+<!--//nickname 是昵称-->
+<!--}-->
+
+<!--</script>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
+<!--xmlns="http://www.w3.org/1999/html">-->
+<!--<head>-->
+<!--<meta charset="UTF-8" />-->
+<!--<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,-->
+<!--minimum-scale=1,user-scalable=no"></meta>-->
+<!--<title>userList</title>-->
+<!--<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>-->
+<!--&lt;!&ndash;<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>&ndash;&gt;-->
+<!--<script type="text/javascript" src="css/main.js"></script>-->
+
+
+<!--<style >-->
+<!--#chaxun{-->
+<!--width:1000px;-->
+<!--height:600px;-->
+<!--margin-top: 120px;-->
+<!--background-image:url(img/background-login.jpg);-->
+<!--background-repeat:no-repeat;-->
+<!--background-size: 2000px 1000px;-->
+
+<!--}-->
+
+<!--#yonghuchaxun{-->
+<!--color: #ac2925;-->
+<!--}-->
+<!--</style>-->
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;<img src="img/background-login.jpg" class="img-responsive center-block" />&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</head>-->
+<!--<body class="container img-responsive center-block" id="chaxun">&lt;!&ndash;img-responsive center-block"&ndash;&gt;-->
+<!--<br/>-->
+<!--<br/>-->
+<!--<br/>-->
+<!--<br/>-->
+<!--<h1 class="col-md-3 col-md-offset-4" id="yonghuchaxun">用户查询</h1>-->
+
+<!--<br/>-->
+<!--<br/>-->
+<!--<br/><br/>-->
+
+<!--<br/>-->
+<!--<form  class="col-md-3 col-md-offset-4" th:action="@{/select}" method="post">&lt;!&ndash;form-inline&ndash;&gt;-->
+<!--&lt;!&ndash; <form class="col-sm-10 control-label" th:action="@{/select}" method="post">&ndash;&gt;&lt;!&ndash;form-inline&ndash;&gt;-->
+<!--<div class="form-group">-->
+<!--<input type="text" class="form-control input-medium" name="danHao" id="danHao" placeholder="请输入单号"/>-->
+<!--</div>-->
+
+<!--<br/>-->
+<!--<div class="form-group">-->
+<!--<div class="col-sm-14 control-label">&lt;!&ndash;col-sm-offset-2   col-sm-10&ndash;&gt;-->
+<!--<input type="submit" value="查询" class="btn btn-info btn-block"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
+
+<!--<br/>-->
+<!--<br/><br/>-->
+<!--<br/><br/>-->
+<!--<br/>-->
+<!--&lt;!&ndash;col-md-offset-0 btn-block&ndash;&gt;-->
+<!--<div class="form-group col-md-offset-4  btn-block">-->
+<!--<div class="col-md-3 control-label">-->
+<!--<a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info btn-block">下 单</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--&lt;!&ndash;<div class="with:80%">&ndash;&gt;-->
+<!--&lt;!&ndash;<table class="table table-hover">&ndash;&gt;-->
+<!--&lt;!&ndash;<thead>&ndash;&gt;-->
+<!--&lt;!&ndash;<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>&nbsp;ID&nbsp;</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>发&nbsp;货&nbsp;人</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>收&nbsp;&nbsp;货&nbsp;&nbsp;人</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>发货人号码</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>收货人号码</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>发货&nbsp;&nbsp;地址</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>收货&nbsp;&nbsp;地址</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>运送&nbsp;&nbsp;费用</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<th>货物&nbsp;&nbsp;图片</th>&ndash;&gt;-->
+<!--&lt;!&ndash;</tr>&ndash;&gt;-->
+<!--&lt;!&ndash;</thead>&ndash;&gt;-->
+<!--&lt;!&ndash;<tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;<tr  th:each="user : ${users}">&ndash;&gt;-->
+<!--&lt;!&ndash;<th scope="row" th:text="${user.id}">1</th>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${user.fuserName}">neo</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${user.tuserName}">neos</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${user.fphone}">ph</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${user.tphone}">phs</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${user.fcity}">cs</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${user.tcity}">css</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${user.price}">16</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${user.picture}">sss</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td><a th:href="@{/delete(id=${user.id})}">delete</a></td>&ndash;&gt;-->
+<!--&lt;!&ndash;</tr>&ndash;&gt;-->
+<!--&lt;!&ndash;</tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;</table>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="col-sm-2 control-label">&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;<br/><br/>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="container" style="min-height: 500px">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="starter-template">&ndash;&gt;-->
+<!--&lt;!&ndash;<form class="form-horizontal" id="search-form">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="form-group form-group-lg">&ndash;&gt;-->
+<!--&lt;!&ndash;<label class="col-sm-2 control-label">用户ID</label>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="col-sm-10">&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" class="form-control" id="username"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="col-sm-offset-2 col-sm-10">&ndash;&gt;-->
+<!--&lt;!&ndash;<button type="button" id="bth-search"&ndash;&gt;-->
+<!--&lt;!&ndash;class="btn btn-primary btn-lg" onclick="fire_ajax_submit()">Search&ndash;&gt;-->
+<!--&lt;!&ndash;</button>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;<h4>订&nbsp;单&nbsp;号111222：</h4><h4><div id="feedback1"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;<h4>发&nbsp;货 &nbsp;人:<div id="feedback2"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;<h4>收&nbsp;货 &nbsp;人:<div id="feedback3"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;<h4>发货人号码:<div id="feedback4"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;<h4>收货人号码:<div id="feedback5"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;<h4>发货&nbsp;&nbsp;地址:<div id="feedback6"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;<h4>收货&nbsp;&nbsp;地址:<div id="feedback7"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;<h4>运送&nbsp;&nbsp;费用:<div id="feedback8"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;<h4>货物&nbsp;&nbsp;图片:<div id="feedback9"></div></h4>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<script>&ndash;&gt;-->
+<!--&lt;!&ndash;function fire_ajax_submit() {&ndash;&gt;-->
+<!--&lt;!&ndash;var search = $("#username").val();&ndash;&gt;-->
+<!--&lt;!&ndash;$.ajax({&ndash;&gt;-->
+<!--&lt;!&ndash;type: "POST",&ndash;&gt;-->
+<!--&lt;!&ndash;url: "/api/search",&ndash;&gt;-->
+<!--&lt;!&ndash;data: {id:search},&ndash;&gt;-->
+<!--&lt;!&ndash;dataType: 'json',&ndash;&gt;-->
+<!--&lt;!&ndash;cache: false,&ndash;&gt;-->
+<!--&lt;!&ndash;success: function (data) {&ndash;&gt;-->
+<!--&lt;!&ndash;//var string =data[0]["userName"]+data[0]["password"]+data[0]["id"]+data[0]["age"];&ndash;&gt;-->
+<!--&lt;!&ndash;// var string =data[0]["id"]+data[0]["fuserName"]+data[0]["tuserName"]+data[0]["tuserName"]&ndash;&gt;-->
+<!--&lt;!&ndash;//     +data[0]["fphone"]+data[0]["tphone"]+data[0]["fcity"]+data[0]["tcity"]+data[0]["price"]&ndash;&gt;-->
+<!--&lt;!&ndash;//     +data[0]["picture"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string1 =data[0]["id"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string2 =data[0]["fuserName"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string3 =data[0]["tuserName"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string4 =data[0]["fphone"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string5 =data[0]["tphone"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string6 =data[0]["fcity"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string7 =data[0]["tcity"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string8 =data[0]["price"];&ndash;&gt;-->
+<!--&lt;!&ndash;var string9 =data[0]["picture"];&ndash;&gt;-->
+<!--&lt;!&ndash;//$('#feedback').html(string);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback1').html(string1);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback2').html(string2);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback3').html(string3);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback4').html(string4);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback5').html(string5);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback6').html(string6);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback7').html(string7);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback8').html(string8);&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback9').html(string9);&ndash;&gt;-->
+<!--&lt;!&ndash;//$('#feedback').html(string);&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;console.log("SUCCESS : ", data);&ndash;&gt;-->
+<!--&lt;!&ndash;$("#btn-search").prop("disabled", false);&ndash;&gt;-->
+
+<!--&lt;!&ndash;},&ndash;&gt;-->
+<!--&lt;!&ndash;error: function (e) {&ndash;&gt;-->
+<!--&lt;!&ndash;alert("单号错误!");&ndash;&gt;-->
+<!--&lt;!&ndash;var json = "<h4>Ajax Response</h4><pre>"&ndash;&gt;-->
+<!--&lt;!&ndash;+ e.responseText + "</pre>";&ndash;&gt;-->
+<!--&lt;!&ndash;$('#feedback').html(json);&ndash;&gt;-->
+
+<!--&lt;!&ndash;console.log("ERROR : ", e);&ndash;&gt;-->
+<!--&lt;!&ndash;$("#btn-search").prop("disabled", false);&ndash;&gt;-->
+
+<!--&lt;!&ndash;}&ndash;&gt;-->
+<!--&lt;!&ndash;});&ndash;&gt;-->
+
+<!--&lt;!&ndash;}&ndash;&gt;-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script type="text/javascript"&ndash;&gt;-->
+<!--&lt;!&ndash;src="webjars/jquery/3.1.1/jquery.min.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script type="text/javascript" src="css/main.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;-->
+<!--</body>-->
+<!--</html>&ndash;&gt;-->

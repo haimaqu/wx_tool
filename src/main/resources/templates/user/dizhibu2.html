@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:display="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0,user-scalable=0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>userList</title>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <link rel="stylesheet" href="../css/example.css"/>
+    <link rel="stylesheet" href="../css/weui.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/dizhibu.css"/>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../js/iconfont.js"></script>
+    <!--<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>-->
+    <!--<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>-->
+
+    <style type="text/css">
+        #xzdz{
+            width: 100%;
+            margin-top: 500px;
+        }
+        #bejing {
+            background-color: rgba(255, 252, 201, 0.16);
+        }
+        #liuhai {
+            width: 100%;
+            /*margin-left: 15px;*/
+            /*background-repeat:no-repeat;*/
+            /*background-size: 2000px 1000px;*/
+            background-color: #e2d4ba;
+            opacity: 0.5;
+        }
+        .icon {
+            width: 5em;
+            height: 5em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+            /*margin-top: 95px;*/
+            margin-left: 150px;
+
+        }
+
+        #xm {
+            width: 80%;
+        }
+        #zhuxinxi{
+            width: 100%;
+        }
+        #mianban1{
+            width: 300px;
+        }
+        #dizhi{
+            width:400px;
+        }
+        #fphone{
+            /*float: left;*/
+            padding-right: 15px;
+            /*margin-right: 100px;*/
+        }
+        #fuserName{
+            /*float: left;*/
+            width: 55%;
+            /*margin-right: 0px;*/
+        }
+        #caozuo{
+            margin-right: 10px;
+        }
+        .zongde{
+            width: 100%;
+            background-color: #67adad;
+        }
+        .cide{
+            background-color: #1AAD19;
+            width: 10px;
+        }
+        /*#biaoge{*/
+        /*background-color: #ad7d66;*/
+        /*}*/
+        #bianji {
+            /*background-color: #ad7d66;*/
+            margin-left: 100px;
+        }
+        .bianjis {
+            background-color: #ad453a;
+        }
+        #biaos {
+            background-color: rgba(238, 150, 56, 0.36);
+        }
+        #tbiaos {
+            background-color: rgba(228, 155, 239, 0.48);
+        }
+        #cibiao {
+            background-color: rgba(246, 231, 179, 0.35);
+            /*height: 100%;*/
+            width: 100%;
+        }
+
+    </style>
+
+</head>
+<body id="beijing">
+<!--<div style="position:absolute;z-index: 10000;">-->
+<!--<p>6666</p></div>-->
+<!--<svg class="icon" aria-hidden="true" style="position:absolute;z-index: 1600;">-->
+<!--<use xlink:href="#icon-jijianren"></use>-->
+<!--</svg>-->
+<div class="container" id="container">
+
+    <div class="page__bd">
+        <!--<a href="javascrip
+            t:;" class="weui-btn weui-btn_primary">点击展现searchBar</a>-->
+        <div class="weui-search-bar" id="searchBar">
+            <!--99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999搜索条-->
+            <form class="weui-search-bar__form">
+                <div class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required=""/>
+                    <!--99999999999999999999999搜索输入99999-->
+                    <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                    <!--99999999999999999999999999999999999999999999999999999999搜索清除99999-->
+                </div>
+                <label class="weui-search-bar__label" id="searchText"
+                       style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);"><!--9搜索文本999-->
+                    <i class="weui-icon-search"></i>
+                    <span>搜索</span>
+                </label>
+                <!--<a href="javascript:;" class="weui-btn weui-btn_warn" onclick="fire_ajax()">查 555 询</a>-->
+            </form>
+
+            <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+            <!--99999999999999999999999999999999999999999999999999搜索取消9999-->
+        </div>
+        <a href="javascript:;" class="weui-btn weui-btn_warn" onclick="fire_ajax()"><h5>查 询</h5></a>
+    </div>
+
+    <br/><br/>
+    <div id="xzdz" style="position:absolute;z-index: 5000;"><!--class="form-group col-md-offset-4-->
+        <div><!--control-label  col-md-3-->
+            <a href="http://not.natapp1.cc/jijianren/"  class="weui-btn weui-btn_warn">新增地址</a><!--btn-info col-md-1-->
+        </div>
+    </div>
+    <!--<a href="javascript:;" class="weui-btn weui-btn_plain-primary">按钮</a>-->
+    <!--<a href="javascript:;" class="weui-btn weui-btn_warn">警告类操作 Normal</a>-->
+    <script type="text/javascript" class="searchbar js_show">
+        $(function () {
+            var $searchBar = $('#searchBar'),
+                $searchResult = $('#searchResult'),
+                $searchText = $('#searchText'),
+                $searchInput = $('#searchInput'),
+                $searchClear = $('#searchClear'),
+                $searchCancel = $('#searchCancel');
+
+            function hideSearchResult() {/*隐藏搜索结果*/
+                $searchResult.hide();
+                $searchInput.val('');
+            }
+
+            function hideSearchResult() {
+                hideSearchResult();
+                $searchBar.removeClass('weui-search-bar_focusing');
+                $searchText.show();
+            }
+
+            $searchText.on('click', function () {
+                $searchBar.addClass('weui-search-bar_focusing');
+                $searchInput.focus();
+            });
+            $searchInput
+                .on('blur', function () {
+                    if (!this.value.length) cancelSearch();
+                })
+                .on('input', function () {
+                    if (this.value.length) {
+
+
+                        $searchResult.show();
+                    } else {
+                        $searchResult.hide();
+                    }
+                })
+            ;
+            $searchClear.on('click', function () {
+                hideSearchResult();
+                $searchInput.focus();
+            });
+            $searchCancel.on('click', function () {
+                cancelSearch();
+                $searchInput.blur();
+            });
+        });
+    </script>
+</div>
+<br/><br/><br/><br/><br/>
+<div class="zongdes" style="position:absolute;z-index: 2000;">
+    <!--<table  id="biao"  style="position:absolute;z-index: 8500;">&lt;!&ndash;class="table table-hover"&ndash;&gt;-->
+    <thead></thead>
+    <!--<tbody id="tbiao" style="position:absolute;z-index: 8600;">-->
+    <tr th:each="addr :${addrs}">
+        <table  id="cibiao"  ><!--class="weui-cell"--><!--style="position:absolute;z-index: 8700;"-->
+            <div  style="position:absolute;z-index: 9000;" class="cide">
+                <div id="tiaozhuan"  onclick="window.location=('http://not.natapp1.cc/jijianren/')">
+                    <tr>
+                        <td id="fuserName">&nbsp;
+                            <span class="weui-input" th:text="${addr.fuserName}"></span>
+                        </td>
+                        <td id="fphone">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="weui-input" th:text="${addr.fphone}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;<span class="weui-input" th:text="${addr.fcity}"></span></td>
+                    </tr>
+                    <br/>
+                    <tr id="bianji">
+                        <td>  <!--&nbsp;&nbsp;&nbsp;&nbsp;-->&nbsp;
+                            <span><a th:href="@{/toUse2(id=${addr.id})}">使用</a></span>
+                            <span><a th:href="@{/toEditp(id=${addr.id})}">编辑</a></span>
+                            <span><a th:href="@{/deletep(id=${addr.id})}">删除</a></span>
+                        </td>
+                        <!--</div>-->
+                    </tr>
+                </div>
+
+
+                <!--</div>-->
+            </div>
+        </table>
+        <!--</div>-->
+    </tr>
+    <!--</tbody>-->
+    <!--</table>-->
+</div>
+</body>
+</html>
+
+<!--</div>-->
+<!--<td th:text="${addr.fuserName}">neo</td>-->
+<!--<td  th:text="${addr.fphone}">neo</td>-->
+<!--<td th:text="${addr.fcity}">neo</td>-->
+<!--&lt;!&ndash;<td th:text="${addr.picture}">neo</td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${addr.price}">neo</td>&ndash;&gt;-->
+<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--<td><a th:href="@{/toEditp(id=${addr.id})}">编辑</a></td>-->
+<!--<td><a th:href="@{/deletep(id=${addr.id})}">删除</a></td>-->
+
+<!--<td th:text="${addr.fuserName}">neo</td>-->
+<!--<td  th:text="${addr.fphone}">neo</td>-->
+<!--<td th:text="${addr.fcity}">neo</td>-->
+<!--<td th:text="${addr.picture}">neo</td>-->
+<!--<td th:text="${addr.price}">neo</td>-->
+
+<!--<div class="list_item">-->
+<!--<div class="item_header" onclick="selectAddress(this)" pn="340000" cn="341100" dn="341102">-->
+<!--<div class="left_img" isdefault="undefined" id="d0904d7e2dfe41b686baa2a28cf6915a">-->
+<!--<img src="../../statics/app/images/addressBook/checked_false.png" alt="多选图片按钮" class="mulOptionImg" ischecked="unChecked">-->
+<!--</div>-->
+<!--<span class="name">薛飞</span>-->
+<!--<span class="phone">17375350540</span>-->
+<!--<span class="address">安徽省,滁州市,琅琊区  滁州学院</span>-->
+<!--</div>-->
+
+<!--<div class="item_footer" rs_type="undefined" contactid="d0904d7e2dfe41b686baa2a28cf6915a" isdefault="undefined">-->
+<!--<div id="setDefault" onclick="setDefault(this)">-->
+<!--<img src="../../statics/app/images/addressBook/check_false.png" class="IS_DEFAULT" data-index="0"><span>设为默认寄件地址</span>-->
+<!--</div>-->
+<!--<div class="add_edit" onclick="editAddress(this);">-->
+<!--<img src="../../statics/app/images/addressBook/edit_btn.png">-->
+<!--<span id="add_edit">编辑</span>-->
+<!--</div>-->
+<!--<div class="add_del" onclick="clickDel(this);">-->
+<!--<img src="../../statics/app/images/addressBook/address_del.png"><span id="add_del">删除-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="weui-panel__bd">-->
+<!--<div class="weui-media-box weui-media-box_text">-->
+<!--<h4 class="weui-media-box__title">标题一</h4>-->
+<!--<p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>-->
+<!--</div>-->
+<!--<div class="weui-media-box weui-media-box_text">-->
+<!--<h4 class="weui-media-box__title">标题二</h4>-->
+<!--<p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div class="weui-cells" style="position:absolute;z-index: 888;" id="xinxi">-->
+<!--<div class="weui-cell">-->
+<!--<div class="weui-cell__hd"><label class="weui-label">qq</label></div>-->
+<!--<div class="weui-cell__bd">-->
+<!--<input id="ss" type= "text" class="weui-input" placeholder="姓名"/>&lt;!&ndash; onclick="window.location=('http://not.natapp1.cc/lists/')"&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="weui-cells weui-cells_form">-->
+<!--<div class="weui-cell">-->
+<!--<div class="weui-cell__hd"><label class="weui-label">qq</label></div>-->
+<!--<div class="weui-cell__bd">-->
+<!--<input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入qq号"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="weui-cell weui-cell_vcode">-->
+<!--<div class="weui-cell__hd">-->
+<!--<label class="weui-label">手机号</label>-->
+<!--</div>-->
+<!--<div class="weui-cell__bd">-->
+<!--<input class="weui-input" type="tel" placeholder="请输入手机号"/>-->
+<!--</div>-->
+<!--<div class="weui-cell__ft">-->
+<!--<button class="weui-vcode-btn">获取验证码</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="weui-cell">-->
+<!--<div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>-->
+<!--<div class="weui-cell__bd">-->
+<!--<input class="weui-input" type="date" value=""/>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="weui-cell">-->
+<!--<div class="weui-cell__hd"><label for="" class="weui-label">时间</label></div>-->
+<!--<div class="weui-cell__bd">-->
+<!--<input class="weui-input" type="datetime-local" value="" placeholder=""/>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="weui-cell weui-cell_vcode">-->
+<!--<div class="weui-cell__hd"><label class="weui-label">验证码</label></div>-->
+<!--<div class="weui-cell__bd">-->
+<!--<input class="weui-input" type="number" placeholder="请输入验证码"/>-->
+<!--</div>-->
+<!--<div class="weui-cell__ft">-->
+<!--<img class="weui-vcode-img" src="./images/vcode.jpg"/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<br/><br/><br/><br/><br/><br/>-->
+<!--<div class="weui-cells weui-cells_form">-->
+<!--<div class="weui-cell">-->
+<!--<div class="weui-cell__bd">-->
+<!--<textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>-->
+<!--<div class="weui-textarea-counter"><span>0</span>/200</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+
+
+
+
+

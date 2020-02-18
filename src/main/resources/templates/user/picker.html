@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <title>WeUI</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.css"/>
+
+    <!--<link rel="stylesheet" href="https://weui.io/weui.css"/>-->
+    <!--<link rel="stylesheet" href="https://weui.io/example.css"/>-->
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.1.4/weui.min.js"></script>
+
+    <script type="text/javascript" src="css/main.js"></script>
+    <link href="/css/weui.css" rel="stylesheet"/>
+    <link href="/css/example.css" rel="stylesheet"/>
+
+
+</head>
+<!--<body ontouchstart="">-->
+
+<body>
+
+<!--<script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.js" type="text/javascript" charset="utf-8"></script>-->
+<!--&lt;!&ndash;引入微信的两个js&ndash;&gt;-->
+<!--<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+<!--&lt;!&ndash;weui.min.js有版本之分，在低版本的js中有些功能不完善，在高版本会支持&ndash;&gt;-->
+<!--<script src="https://res.wx.qq.com/open/libs/weuijs/1.1.4/weui.min.js"></script>-->
+<!--<script type="text/javascript" src="../js/city-picker.js" charset="utf-8"></script>-->
+
+<!--<script type="text/javascript" src="js/city-picker.js" charset="utf-8"></script>-->
+
+
+<div class="page picker js_show">
+    <div class="page__hd">
+        <h1 class="page__title">Picker</h1>
+        <p class="page__desc">多列选择器，需要配合js实现--V型知识库www.vxzsk.com</p>
+        <p id="text1">123</p>
+    </div>
+    <div class="page__bd page__bd_spacing">
+        <a href="javascript:;" class="weui-btn weui-btn_default" id="showPicker" name="danHao">114 句容</a>
+        <a href="javascript:;" class="weui-btn weui-btn_default" id="showDatePicker">日期选择器</a>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript" class="picker js_show">
+    $('#showPicker').on('click', function () {
+        weui.picker([{
+            label: '114 句容',
+            value: '114 句容'
+        }, {
+            label: '191   常州',
+            value: "191   常州"
+        }, {
+            label: '103   宜兴',
+            value: '103   宜兴'
+        }, {
+            label: '144   高邮',
+            value: '144   高邮'
+        }, {
+            label: '231   泰州',
+            value: '231   泰州'
+
+        }, {
+            label: '141   扬州',
+            value: '141   扬州'
+
+        }, {
+            label: '155   东台',
+            value: '155   东台'
+
+        }, {
+            label: '711   杭州',
+            value: '711   杭州'
+
+        }, {
+            label: '166   沛县',
+            value: '166   沛县'
+
+        }, {
+            label: '111   镇江',
+            value: '111   镇江'
+
+        }], {
+            onChange: function (result) {
+                console.log(result);
+                document.getElementById("showPicker").innerHTML = result;
+            },
+            onConfirm: function (result) {
+                console.log(result);
+                document.getElementById("showPicker").innerHTML = result;
+            }
+        });
+    });
+    $('#showDatePicker').on('click', function () {
+        weui.datePicker({
+            start: 1990,
+            end: new Date().getFullYear(),
+            onChange: function (result) {
+                console.log(result);
+            },
+            onConfirm: function (result) {
+                console.log(result);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
